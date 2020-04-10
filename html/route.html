@@ -1,0 +1,25 @@
+
+  <div c-role="route" class="pos-rel flex-y-stretch d-none">
+	    
+	  <main c-role="route-page page" class="pos-rel wt-full"></main>
+	  <c-import c-namespace="html/routegroup//html/route" c-role="route-subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></c-import>
+    
+    <script type="text/jsen">
+      class('d-none', !binding.active);
+      if (binding) {
+        if (binding.active && pageTitle) {
+          (pageTitle.innerHTML = binding.current.active.title || binding.title);
+        }
+        tree.page.bind(binding.page);
+        tree.subroutes.bind(binding.subroutes);
+        if (binding.current.activating || binding.current.active) {
+          tree.page.css({display: 'none', opacity: 0, transform: 'scale(0.95)',});
+          tree.subroutes.css('display', '').then(subroutes => subroutes.play({opacity: 1, transform: {scale: '1'},}, {duration: 200}));
+        } else {
+          tree.subroutes.css({display: 'none', opacity: 0, transform: 'scale(0.95)',});
+          tree.page.css('display', '').then(page => page.play({opacity: 1, transform: {scale: '1'},}, {duration: 200}));
+        }
+      }
+    </script>
+    
+  </div>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Toursom</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="rgb(255,76,89)" />
+    <base href="/" />
+    
+    <link rel="shortcut icon" href="favicon_io/favicon.ico" />
+    
+    <!--
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/cui/css/lib/resets.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/cui/css/lib/canvas.css" />
+	
+	  <script src="//unpkg.com/@web-native-js/cui/ext/web-animations.min.js"></script>
+    <script src="//unpkg.com/@web-native-js/cui/ext/hammer.min.js"></script>
+    -->
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/resets.css" />
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/canvas.css" />
+	
+	  <script src="http://localhost:8080/cui/ext/web-animations.min.js"></script>
+    <script src="http://localhost:8080/cui/ext/hammer.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
+
+    <script src="/main.js"></script>
+    <link type="text/css" rel="stylesheet" href="/main.css" />
+    <template is="c-bundle" src="/main.html"></template>
+
+    <template is="c-bundle">
+
+      <!-- ---------------------------- -->
+
+      <ol c-role="grid" c-namespace="html/tablist/sequence">
+        <script type="text/jsen">
+            // This timeline local variable will be seen by <li> items
+            const timeline = Registry.create('Timeline');
+            timeline.play([{
+              opacity:0,
+            }, {
+              opacity:1,
+            }], {
+              delay:4000,
+              duration:600,
+              easing:'ease-in',
+              lag:600,
+            });
+        </script>
+      </ol>
+
+      <li c-role="item" c-namespace="html/tabitem/sequence" style="border-top: 2px dotted gainsboro;">
+        <a c-role="item-link item-label" class="d-block cursor-pointer" style="padding: 7.5px;"></a>
+        <script type="text/jsen">
+            timeline.add(el);
+            tree.label.html(binding.label);
+            css('color', binding.active ? 'blue' : '');
+            on('click', () => binding.setActiveState());
+        </script>
+      </li>
+
+      <ul c-namespace="html/slider" class="pos-rel wt-full flex-y-stretch"></ul>
+
+      <li c-role="slide" c-namespace="html/slide" class="pos-rel col-12 txt-align-cntr overflow-auto">
+        <div class="code d-inline-block txt-align-lft">
+          <pre style="margin: 0px;">
+            <code c-role="slide-code" style="display: block; font-size: smaller; border-left: 10px solid rgba(0, 0, 0, 0.125);"></code>
+          </pre>
+          <div c-role="slide-next" style="text-align: center; cursor: pointer;">
+          </div>
+        </div>
+        
+        
+        <script type="text/jsen">
+            if (binding) {
+                tree.code.text(binding.code);
+                binding.setEl(el);
+            }
+        </script>
+      </li>
+      <!-- ---------------------------- -->
+    </template>
+    
+    <style type="text/css">
+      .left-pane {
+        width: 30%;
+        height: 100vh;
+        padding: 25px;
+        color: black;
+        border-right: 2px solid silver;
+        overflow-y: auto;
+      }
+      .right-pane {
+        width: 70%;
+        height: 100vh;
+      }
+      #slider li {
+        background-image: url(assets/images/bg-light.jpg);
+        background: whitesmoke;
+        background: lavender;
+      }
+      #slider li .code {
+        padding: 25%;
+        padding-top: 12.5%;
+        padding-bottom: 12.5%;
+      }
+      #blind-container {
+        position: relative;
+        width: 70vw;
+        height: 70vw;
+        pointer-events: none;
+      }
+      #blind-a, #blind-b {
+        width: 0px;
+        height: 0px;
+        border-radius: 50%;
+      }
+      #blind-a {
+        border: 2px dashed whitesmoke;
+        box-shadow: 0px 0px 0px 50vw rgba(255, 255, 255, 0.9);
+        overflow: hidden;
+      }
+      #blind-b {
+        border: 2px solid silver;
+        box-shadow: 0px 0px 0px 55vw rgba(255, 255, 255, 0.8);
+      }
+      #walkthrough-control, #walkthrough-cont {
+        position: absolute;
+        left: 2.5vw;
+        width: 17.5vw;
+        font-weight: bold;
+        pointer-events: initial;
+      }
+      #walkthrough-control {
+        top: 10vw;
+      }
+      #walkthrough-cont {
+        bottom: 12.5vw;
+      }
+      #intro-card {
+        padding: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 1.5em;
+        color: white;
+        background-color: blueviolet;
+        border-radius: 10px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      }
+      #walkthrough-control li {
+        font-size: smaller;
+      }
+      @media (max-width: 1200px) {
+        #slider li .code {
+          padding-top: 22.5%;
+          padding-bottom: 22.5%;
+        }
+      }
+      @media (max-width: 1000px) {
+        main {
+          display: block !important;
+        }
+        .left-pane, .right-pane {
+          width: 100%;
+        }
+        .left-pane {
+          height: auto;
+          border-right: none;
+          border-bottom: 2px dashed silver;
+        }
+        #slider li .code {
+          padding-top: 15%;
+          padding-bottom: 15%;
+        }
+        #blind-container {
+          width: 100vw;
+          height: 100vw;
+          border-radius: 50%;
+          box-shadow: 0px 0px 0px 30vw rgba(255, 255, 255, 0.95);
+          overflow: hidden;
+        }
+        #blind-a {
+          box-shadow: 0px 0px 0px 75vw rgba(255, 255, 255, 0.95);
+        }
+        #walkthrough-control, #walkthrough-cont {
+          left: 5vw;
+          width: 25vw;
+        }
+        #walkthrough-control {
+          top: 7.5vw;
+        }
+        #walkthrough-control div {
+          font-size: small;
+        }
+      }
+      @media (max-width: 800px) {
+        #slider li .code {
+          padding-top: 20%;
+          padding-bottom: 20%;
+        }
+      }
+      @media (max-width: 700px) {
+        #slider li .code {
+          padding-top: 25%;
+          padding-bottom: 25%;
+        }
+      }
+      @media (max-width: 600px) {
+        #blind-container {
+          width: 140vw;
+          height: 140vw;
+        }
+        #slider li .code {
+          padding-top: 25%;
+          padding-bottom: 25%;
+        }
+        #blind-container {
+         box-shadow: 0px 0px 0px 52vw rgba(255, 255, 255, 0.95);
+        }
+        #walkthrough-control, #walkthrough-cont {
+          left: 30px;
+          width: 45vw;
+        }
+        #walkthrough-control ol {
+          padding: 10px !important;
+          padding-left: 20px !important;
+        }
+      }
+      @media (max-width: 550px) {
+        #slider li .code {
+          padding: 15%;
+          padding-top: 30%;
+          padding-bottom: 30%;
+        }
+      }
+      @media (max-width: 450px) {
+        #slider li .code {
+          padding: 10%;
+          padding-top: 60%;
+          padding-bottom: 60%;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    
+    <!-- ---------------------------- -->
+    <c-import c-namespace="html/route" c-role="route" id="app" class="pos-rel" style="height: 100vh;">
+
+      <section c-role="route-page page" class="pos-rel">
+        <a href="/chtml/">CHTML >></a>
+      </section>
+      
+    </c-import>
+    <!-- ---------------------------- -->
+
+  </body>
+</html>

@@ -1,0 +1,245 @@
+
+
+	<!-- NAMESPACE: jpg/images/bg-light -->
+	<img c-namespace="jpg/images/bg-light" src="/assets/images/bg-light.jpg" />
+
+
+
+	<!-- NAMESPACE: png/images/illustrations/structure.fw -->
+	<img c-namespace="png/images/illustrations/structure.fw" src="/assets/images/illustrations/structure.fw.png" />
+
+
+
+	<!-- NAMESPACE: html/route/chtml -->
+	<c-import c-namespace="html/route/chtml">
+      
+    <section c-role="route-page page" class="pos-rel">
+        
+      <main c-role="page-main" class="flex-y-stretch">
+
+        <div class="left-pane col-none">
+        
+          <div class="h2 lex-y-center flex-x-separate" style="font-size: 1.2em;">
+            <a style="display: inline-block; padding: 7.5px; color: black; background-color: blueviolet;" href="">
+              <span style="color: silver;">&lt;</span><span style="color: white;">CHTML</span> <span style="color: silver;">/&gt;</span>
+            </a>
+            <div style="color: silver; cursor: pointer;">&middot; &middot; &middot;</div>
+          </div>
+
+          <div style="padding: 15px; margin-top: 50px;">
+              <span style="display: inline-block; width: 25px; margin-bottom: 20px; border: 3px solid lavender;"></span>
+
+              <h1>
+                  Finally, a <span style="white-space: nowrap;">Web-Native</span> UI Framework!
+              </h1>
+              
+              <h2 style="margin-top: 40px; padding-top: 10px; padding-bottom: 10px; font-size: 1em; border-top: 2px dashed silver; border-bottom: 2px dashed silver;">
+                  <span style="padding: 5px; line-height: 30px; background-color: whitesmoke;">More vanilla,</span>
+                    <br />
+                  <span style="padding: 5px; line-height: 30px; background-color: whitesmoke;">Less engineering.</span>
+                  <br />
+                  - <a class="no-wrap" style="padding: 5px; line-height: 30px; background-color: whitesmoke;" href="https://docs.web-native.dev/chtml/">The Revolution</a>
+              </h2>
+  
+              <ul style="padding: 15px; margin-top: 30px; line-height: 30px;">
+                <li>
+                  <a href="https://docs.web-native.dev/chtml/guide/">Getting Started</a>
+                </li>
+                <li>
+                  <a href="https://docs.web-native.dev/chtml/guide/">Documentation</a>
+                </li>
+                <li>
+                  <a href="https://github.com/web-native/chtml">Github</a>
+                </li>
+              </ul>
+          </div>
+          
+        </div>
+        
+        <!-- ---------------------------- -->
+        
+        <div class="right-pane pos-rel flex-y-stretch col-none">
+
+          <div c-role="page-slider slider" class="pos-rel wt-full flex-y-stretch overflow-hidden">
+            
+            <c-import id="slider" c-role="slider-entries entries" c-namespace="html/slider//html/slide" class="flex-y-stretch">
+              <li class="h2 col-12" style="overflow-y: auto;">
+                <div class="code flex-y-center" style="border-left: 10px solid rgba(0, 0, 0, 0.1);">
+                  <div style="padding: 50px;">
+                    CHTML helps you implement your UI's Component Architecture at the markup level!
+                    <br />
+                    <br />
+                    It is based on three main concepts: <b>structure</b>, <b>behaviour</b>, and <b>composition</b>.
+                    And what you will probabbly enjoy the most is being able to code in plain HTML and, optionally, JavaScript.
+                    <br />
+                    <br />
+                    Here's a simplified guide showing how to make a simple card component.
+                    <br />
+                    <br />
+                    -----------------------------
+                    <div c-role="slider-starter" style="cursor: pointer;">Click here to begin...</div>
+                    -----------------------------
+                  </div>
+                </div>
+              </li>
+            </c-import>
+
+            <script type="text/jsen">
+              tree.entries.bind(binding.entries);
+              tree.starter.on('click', () => binding.selectStart());
+              if (binding.current.activating) {
+                  tree.entries.translateTo(el, {
+                      using: binding.current.activating.el,
+                      play: {
+                        duration: 1000,
+                        delay: 2500,
+                        easing: 'ease-out',
+                      },
+                  });
+              }
+            </script>
+
+          </div>
+  
+          <div c-role="page-blind blind" class="pos-abs cover flex-x-center flex-y-center pointer-events-none overflow-hidden">
+            
+            <div id="blind-container" class="flex-x-center flex-y-center col-none">
+              <div id="blind-a" c-role="blind-large" class="flex-x-center flex-y-center col-none">
+                <div id="blind-b" c-role="blind-small"></div>
+              </div>
+            </div>
+            
+            <div id="walkthrough-control" c-role="page-walkthrough walkthrough" class="pointer-events-normal">
+              
+              <div id="intro-card" class="flex-y-start">
+                <div style="width: 2em; height: 2em; border-radius: 50%; background: silver;"></div>
+                <div c-role="walkthrough-desc" class="col-grows" style="padding-left: 1em;"></div>
+              </div>
+              <c-import c-namespace="html/tablist/sequence//html/tabitem/sequence" c-role="walkthrough-entries" style="padding: 30px;"></c-import>
+              
+              <script type="text/jsen">
+                tree.desc.html(binding.desc);
+                tree.entries.bind(binding.entries);
+              </script>
+
+            </div>
+
+            <div id="walkthrough-cont" class="pointer-events-normal" style="width: auto; padding: 20px; font-size: smaller; background-color: whitesmoke; border-radius: 25px;">
+              The full <a class="h2" href="https://docs.web-native.dev/chtml/guide/">CHTML Guide</a>
+            </div>
+  
+          </div>
+          
+        </div>
+
+      </main>
+              
+      <script type="text/jsen">
+        let shown = false;
+        let show = function(lag = 0) {
+          tree.blind.tree.large.play({
+            width: '85%', height: '85%',
+          }, {delay: 1000, duration: 1500 + lag, easing: 'ease-out'});
+          return tree.blind.tree.small.play({
+            width: '65%', height: '65%',
+          }, {delay: 2000, duration: 1000 + lag, easing: 'ease-out'}).then(() => {
+            shown = true;
+          });
+        };
+        let blind = function() {
+          shown = false;
+          tree.blind.tree.small.play({
+            width: 0, height: 0,
+          }, {duration: 1500, easing: 'ease-in'});
+          return tree.blind.tree.large.play({
+            width: 0, height: 0,
+          }, {delay: 1000, duration: 1000, easing: 'ease-in'});
+        };
+        show(500);
+        if (binding) {
+          if (shown && tree.walkthrough.binding.current.activating) {
+            blind().then(() => show());
+          }
+          // -------------
+          tree.slider.bind(binding.slides);
+          tree.walkthrough.bind(binding.slides);
+          // -------------
+        }
+      </script>
+
+    </section>
+              
+	</c-import>
+
+
+
+	<!-- NAMESPACE: html/route/concepts/intro -->
+	<c-import c-namespace="html/route/concepts/intro">
+      
+      <div c-role="route-page page" class="flex-y-stretch" style="background:black; color:white">
+        
+        <div c-role="page-container" class="pos-rel wt-full flex-x-center flex-y-center  overflow-hidden">
+
+          <div>
+            <h1 c-role="page-title"></h1>
+            <ul>
+              <li><a href="documentation/"><< Back to Documentation page</a></li>
+              <li><a href=""><< Back to Home page</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <script type="text/jsen">binding && tree.title.html(binding.title);</script>
+
+      </div>
+      
+	</c-import>
+
+
+
+	<!-- NAMESPACE: html/route/concepts -->
+	<c-import c-namespace="html/route/concepts" style="background-image:url(assets/images/bg-light.jpg);">
+      
+      <div c-role="route-page" class="flex-y-stretch">
+
+        
+
+      </div>
+
+      <c-import c-namespace="html/routegroup//html/rokute/concepts" c-role="route-subroutes"></c-import>
+      
+	</c-import>
+
+
+
+  <!-- NAMESPACE: html/route -->
+  <div c-namespace="html/route" c-role="route" class="pos-rel flex-y-stretch d-none">
+	    
+	  <main c-role="route-page page" class="pos-rel wt-full"></main>
+	  <c-import c-namespace="html/routegroup//html/route" c-role="route-subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></c-import>
+    
+    <script type="text/jsen">
+      class('d-none', !binding.active);
+      if (binding) {
+        if (binding.active && pageTitle) {
+          (pageTitle.innerHTML = binding.current.active.title || binding.title);
+        }
+        tree.page.bind(binding.page);
+        tree.subroutes.bind(binding.subroutes);
+        if (binding.current.activating || binding.current.active) {
+          tree.page.css({display: 'none', opacity: 0, transform: 'scale(0.95)',});
+          tree.subroutes.css('display', '').then(subroutes => subroutes.play({opacity: 1, transform: {scale: '1'},}, {duration: 200}));
+        } else {
+          tree.subroutes.css({display: 'none', opacity: 0, transform: 'scale(0.95)',});
+          tree.page.css('display', '').then(page => page.play({opacity: 1, transform: {scale: '1'},}, {duration: 200}));
+        }
+      }
+    </script>
+    
+  </div>
+
+
+
+     <!-- NAMESPACE: html/routegroup -->
+     <section c-namespace="html/routegroup"></section>
