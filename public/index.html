@@ -5,7 +5,7 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="rgb(255,76,89)" />
+    <meta name="theme-color" content="rgb(255,255,255)" />
     <base href="/" />
     
     <link rel="shortcut icon" href="favicon_io/favicon.ico" />
@@ -15,7 +15,14 @@
 	
 	  <script src="//unpkg.com/@web-native-js/cui/ext/web-animations.min.js"></script>
     <script src="//unpkg.com/@web-native-js/cui/ext/hammer.min.js"></script>
-
+    <!--
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/resets.css" />
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/canvas.css" />
+	
+	  <script src="http://localhost:8080/cui/ext/web-animations.min.js"></script>
+    <script src="http://localhost:8080/cui/ext/hammer.min.js"></script>
+    -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
 
     <script src="/main.js"></script>
@@ -26,225 +33,237 @@
 
       <!-- ---------------------------- -->
 
-      <ol c-role="grid" c-namespace="html/tablist/sequence">
+      <ul c-namespace="html/list/sequence" style="list-style: none;">
         <script type="text/jsen">
-            // This timeline local variable will be seen by <li> items
-            const timeline = Registry.create('Timeline');
-            timeline.play([{
-              opacity:0,
-            }, {
-              opacity:1,
-            }], {
-              delay:4000,
-              duration:600,
-              easing:'ease-in',
-              lag:600,
-            });
+          // This timeline local variable will be seen by <li> items
+          const timeline = Registry.create('Timeline');
+          timeline.play([{
+            opacity: 0,
+            transform: {translate: [0, '100px']},
+          }, {
+            opacity: 1,
+            transform: {translate: [0, 0]},
+          }], {
+            delay: 400,
+            duration: 600,
+            easing: 'ease-out',
+            lag: 400,
+          });
         </script>
-      </ol>
+      </ul>
 
-      <li c-role="item" c-namespace="html/tabitem/sequence" style="border-top: 2px dotted gainsboro;">
-        <a c-role="item-link item-label" class="d-block cursor-pointer" style="padding: 7.5px;"></a>
+      <li c-role="item" c-namespace="html/listitem/sequence">
         <script type="text/jsen">
+          var io = Registry.create('IntersectionObserver', el, {once: true});
+          io.observe(ee => {
             timeline.add(el);
-            tree.label.html(binding.label);
-            css('color', binding.active ? 'blue' : '');
-            on('click', () => binding.setActiveState());
+          });
         </script>
       </li>
 
-      <ul c-namespace="html/slider" class="pos-rel wt-full flex-y-stretch"></ul>
+      <!-- ---------------------------- -->
+ 
+      <c-import c-namespace="html/list/sequence/cards" class="grid-4"></c-import>
 
-      <li c-role="slide" c-namespace="html/slide" class="pos-rel col-12 txt-align-cntr overflow-auto">
-        <div class="code d-inline-block txt-align-lft">
-          <pre style="margin: 0px;">
-            <code c-role="slide-code" style="display: block; font-size: smaller; border-left: 10px solid rgba(0, 0, 0, 0.125);"></code>
-          </pre>
-          <div c-role="slide-next" style="text-align: center; cursor: pointer;">
+      <c-import c-namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
+        <div>
+          <div c-role="item-meta" class="d-none" style="margin-bottom: 10px;">
+            <div c-role="item-icon" style="width: 75px; height: 75x;"></div>
+            <div c-role="item-type" style="font-size: x-small; text-transform: uppercase;"></div>
+          </div>
+          <div c-role="item-label" class="h2"></div>
+          <div c-role="item-desc" style="margin-top: 10px;"></div>
+        </div>
+        <div class="col-12">
+          <div c-role="item-authors" c-namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
+          <div class="flex-x-separate">
+            <c-import ondemand c-role="item-page" c-namespace="html/link/arrow"></c-import>
+            <c-import c-role="item-link" c-namespace="html/link/arrow" style="padding-right: 0px;"></c-import>
           </div>
         </div>
-        
-        
         <script type="text/jsen">
-            if (binding) {
-                tree.code.text(binding.code);
-                binding.setEl(el);
+          if (binding) {
+            if (binding.label) {
+              if (binding.meta) {
+                tree.meta.class('d-none', false);
+                tree.icon.attr('src', binding.meta.icon);
+                tree.type.html(binding.meta.type);
+              }
+              if (binding.page) {
+                tree.page.attr('href', binding.page);
+                tree.page.html(binding.label);
+              }
+              tree.label.html(binding.label);
+              tree.desc.html(binding.desc);
+              if (binding.authors) {
+                tree.authors.bind(binding.authors);
+              }
+              tree.link.attr('href', binding.link);
+              tree.link.tree.label.html(binding.cta || binding.label);
+            } else {
+              css({minWidth: '250px', background: 'none', border: '1px dashed white'});
             }
+         }
+            
         </script>
-      </li>
+      </c-import>
+
       <!-- ---------------------------- -->
-    </template>
+
+      <a c-role="link" c-namespace="html/link/arrow" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;" href="">
+        <span c-role="link-label" style="padding: 5px"></span>
+        <span c-role="link-arrow" style="padding: 5px">&longrightarrow;</span>
+      </a>
+
+      <c-import c-namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></c-import>
+
+      <!-- ---------------------------- -->
+
+      <div c-namespace="html/author" c-role="author" class="flex-y-center">
+        <a c-role="author-link" class="flex-x-center flex-y-center" style="width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background-color: silver;">
+          <img c-role="author-avatar" />
+        </a>
+        <script type="text/jsen">
+          if (binding) {
+            tree.link.attr({
+              href: binding.link,
+              title: binding.name,
+            });
+            tree.avatar.attr('src', binding.avatar);
+          }
+        </script>
+      </div>
+
+       <!-- ---------------------------- -->
+
+     </template>
     
     <style type="text/css">
-      .left-pane {
-        width: 30%;
-        height: 100vh;
-        padding: 25px;
-        color: black;
-        border-right: 2px solid silver;
-        overflow-y: auto;
+    .section {
+      padding: 50px;
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, auto);
+    }
+    @media (max-width: 1100px) {
+      .grid-4 {
+        grid-template-columns: repeat(3, auto);
       }
-      .right-pane {
-        width: 70%;
-        height: 100vh;
+    }
+    @media (max-width: 900px) {
+      .section {
+        padding-left: 40px;
+        padding-right: 40px;
       }
-      #slider li {
-        background-image: url(assets/images/bg-light.jpg);
-        background: whitesmoke;
-        background: lavender;
+      .grid-4 {
+        grid-template-columns: repeat(2, auto);
       }
-      #slider li .code {
-        padding: 25%;
-        padding-top: 12.5%;
-        padding-bottom: 12.5%;
+    }
+    @media (max-width: 600px) {
+      .grid-4 {
+        grid-template-columns: auto;
       }
-      #blind-container {
-        position: relative;
-        width: 70vw;
-        height: 70vw;
-        pointer-events: none;
-      }
-      #blind-a, #blind-b {
-        width: 0px;
-        height: 0px;
-        border-radius: 50%;
-      }
-      #blind-a {
-        border: 2px dashed whitesmoke;
-        box-shadow: 0px 0px 0px 50vw rgba(255, 255, 255, 0.9);
-        overflow: hidden;
-      }
-      #blind-b {
-        border: 2px solid silver;
-        box-shadow: 0px 0px 0px 55vw rgba(255, 255, 255, 0.8);
-      }
-      #walkthrough-control, #walkthrough-cont {
-        position: absolute;
-        left: 2.5vw;
-        width: 17.5vw;
-        font-weight: bold;
-        pointer-events: initial;
-      }
-      #walkthrough-control {
-        top: 10vw;
-      }
-      #walkthrough-cont {
-        bottom: 12.5vw;
-      }
-      #intro-card {
-        padding: 20px;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        line-height: 1.5em;
-        color: white;
-        background-color: blueviolet;
-        border-radius: 10px;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-      }
-      #walkthrough-control li {
-        font-size: smaller;
-      }
-      @media (max-width: 1200px) {
-        #slider li .code {
-          padding-top: 22.5%;
-          padding-bottom: 22.5%;
-        }
-      }
-      @media (max-width: 1000px) {
-        main {
-          display: block !important;
-        }
-        .left-pane, .right-pane {
-          width: 100%;
-        }
-        .left-pane {
-          height: auto;
-          border-right: none;
-          border-bottom: 2px dashed silver;
-        }
-        #slider li .code {
-          padding-top: 15%;
-          padding-bottom: 15%;
-        }
-        #blind-container {
-          width: 100vw;
-          height: 100vw;
-          border-radius: 50%;
-          box-shadow: 0px 0px 0px 30vw rgba(255, 255, 255, 0.95);
-          overflow: hidden;
-        }
-        #blind-a {
-          box-shadow: 0px 0px 0px 75vw rgba(255, 255, 255, 0.95);
-        }
-        #walkthrough-control, #walkthrough-cont {
-          left: 5vw;
-          width: 25vw;
-        }
-        #walkthrough-control {
-          top: 7.5vw;
-        }
-        #walkthrough-control div {
-          font-size: small;
-        }
-      }
-      @media (max-width: 800px) {
-        #slider li .code {
-          padding-top: 20%;
-          padding-bottom: 20%;
-        }
-      }
-      @media (max-width: 700px) {
-        #slider li .code {
-          padding-top: 25%;
-          padding-bottom: 25%;
-        }
-      }
-      @media (max-width: 600px) {
-        #blind-container {
-          width: 140vw;
-          height: 140vw;
-        }
-        #slider li .code {
-          padding-top: 25%;
-          padding-bottom: 25%;
-        }
-        #blind-container {
-         box-shadow: 0px 0px 0px 52vw rgba(255, 255, 255, 0.95);
-        }
-        #walkthrough-control, #walkthrough-cont {
-          left: 30px;
-          width: 45vw;
-        }
-        #walkthrough-control ol {
-          padding: 10px !important;
-          padding-left: 20px !important;
-        }
-      }
-      @media (max-width: 550px) {
-        #slider li .code {
-          padding: 15%;
-          padding-top: 30%;
-          padding-bottom: 30%;
-        }
-      }
-      @media (max-width: 450px) {
-        #slider li .code {
-          padding: 10%;
-          padding-top: 60%;
-          padding-bottom: 60%;
-        }
-      }
+    }
     </style>
+
   </head>
   
   <body>
     
     <!-- ---------------------------- -->
-    <c-import c-namespace="html/route" c-role="route" id="app" class="pos-rel" style="height: 100vh;">
+    <c-import c-namespace="html/route" c-role="route" id="app" class="pos-rel">
 
-      <section c-role="route-page page" class="pos-rel">
-        <a href="/chtml/">CHTML >></a>
-      </section>
+      <main c-role="route-page page" class="pos-rel" style="background-color: blueviolet; color: white;">
+
+        <header class="section">
+          <img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.5em; font-size: 3.6em;" />
+          <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
+
+          <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
+            (.dev)
+          </div>
+          
+          <div class="flex-y-stretch lg--d-block">
+            <div>
+              <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
+                <p>
+                  This is the open community for "web-native" development. Through 
+                  <a href="#the-engineering">engineering</a> and <a href="#the-evangelism">evangelism</a>, we're going ahead of the curve in 
+                  facilitating web-native languages, APIs and methodologies.
+                </p>
+             </div>
+              
+    
+              <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+                <li style="">
+                  <c-import c-namespace="html/link/arrow/round">
+                    <span c-role="link-label">About Web-Native</span>
+                  </c-import>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-grows">
+            </div>
+          </div>
+          
+        </header>
+
+        <section class="section" style="border-top: 1px dashed silver;">
+          
+          <h2 id="the-engineering" style="font-size: 2em;">The Engineering</h2>
+          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
+            <p>
+              - A conscious approach to solving modern engineering problems 
+              without the unnecessary abstractions over native web languages and APIs.
+              Web-Native engineering brings you closer to web standards!        
+            </p>
+            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+              <li style="">
+                <c-import c-namespace="html/link/arrow/round">
+                  <span c-role="link-label">Learn More</span>
+                </c-import>
+              </li>
+            </ul>
+          </div>
+
+          <c-import c-namespace="html/list/sequence/cards//html/listitem/sequence/card" c-role="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 250px; grid-gap: 20px;"></c-import>
+          
+        </section>
+
+        <section class="section" style="border-top: 1px dashed silver;">
+          
+          <h2 id="the-evangelism" style="font-size: 2em;">The Evangelism</h2>
+          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
+            <p>
+              - Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
+              See what engineers are passionate about on the new paradigm shift; share your own too.
+            </p>
+            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+              <li style="">
+                <c-import c-namespace="html/link/arrow/round">
+                  <span c-role="link-label">Learn More</span>
+                </c-import>
+              </li>
+            </ul>
+          </div>
+
+          <c-import c-namespace="html/list/sequence/cards//html/listitem/sequence/card" c-role="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></c-import>
+
+        </section>
+
+        <section class="section" style="border-top: 1px dashed silver;">
+          <div class="h1" style="padding-bottom: 10px; color: silver;">Launching Soon!</div>
+          &copy; 2020 Oxford Harrison
+          </section>
+
+        <script type="text/jsen">
+          if (binding) {
+            tree.engineeringSection.bind(binding.engineeringSection);
+            tree.evangelismSection.bind(binding.evangelismSection);
+          }
+        </script>
+      </main>
       
     </c-import>
     <!-- ---------------------------- -->
