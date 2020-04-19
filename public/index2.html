@@ -21,7 +21,7 @@
     <script src="//unpkg.com/@web-native-js/cui/ext/hammer.min.js"></script>
 
     <script src="/main.js"></script>
-    <template is="c-bundle" src="/main.html"></template>
+    <template is="chtml-bundle" src="/main.html"></template>
     <link type="text/css" rel="stylesheet" href="/main.css" />
    -->
     <link type="text/css" rel="stylesheet" href="http://localhost:9000/cui/css/lib/resets.css" />
@@ -36,13 +36,13 @@
 
     <script src="main.js"></script>
     <link type="text/css" rel="stylesheet" href="main.css" />
-    <template is="c-bundle" src="main.html"></template>
-    <template is="c-bundle">
+    <template is="chtml-bundle" src="main.html"></template>
+    <template is="chtml-bundle">
       <!-- ---------------------------- -->
-      <li c-role="tile" c-namespace="html/tile" style="position: relative; box-shadow:2px 2px 0px rgba(0, 0, 0, 0.25); border-radius: 3px;">
-        <a c-role="tile-link" class="pos-abs cover"></a>
+      <li data-role="tile" data-namespace="html/tile" style="position: relative; box-shadow:2px 2px 0px rgba(0, 0, 0, 0.25); border-radius: 3px;">
+        <a data-role="tile-link" class="pos-abs cover"></a>
         
-        <script type="text/jsen">
+        <script type="text/scoped-js">
           var intsct = Registry.create('IntersectionObserver', el);
           var timeline = Registry.create('Timeline');
           timeline.add(el);
@@ -68,15 +68,15 @@
         </script>
 
       </li>
-      <c-import c-namespace="html/tile/main">
-        <a c-role="tile-link" class="flex-y-separate flex-wrap" style="padding: 10%;"></a>
-      </c-import>
-      <c-import c-namespace="html/tile/half">
-        <a c-role="tile-link" class="flex-x-evenly flex-y-center" style="padding-left: 10%; padding-right: 10%;"></a>
-      </c-import>
-      <c-import c-namespace="html/tile/quarter">
-        <a c-role="tile-link" class="flex-x-center flex-y-center"></a>
-      </c-import>
+      <chtml-import data-namespace="html/tile/main">
+        <a data-role="tile-link" class="flex-y-separate flex-wrap" style="padding: 10%;"></a>
+      </chtml-import>
+      <chtml-import data-namespace="html/tile/half">
+        <a data-role="tile-link" class="flex-x-evenly flex-y-center" style="padding-left: 10%; padding-right: 10%;"></a>
+      </chtml-import>
+      <chtml-import data-namespace="html/tile/quarter">
+        <a data-role="tile-link" class="flex-x-center flex-y-center"></a>
+      </chtml-import>
       <!-- ---------------------------- -->
   </template>
   <style type="text/css">
@@ -159,64 +159,64 @@
   <body style="background-image:url(assets/images/bg-light.jpg);">
     
     <!-- ---------------------------- -->
-    <c-import ondemand c-namespace="html/route/ok" id="app" c-role="app" style="height: 100vh;">
+    <chtml-import ondemand data-namespace="html/route/ok" id="app" data-role="app" style="height: 100vh;">
 
-      <div class="pos-abs cover flex-x-center flex-y-center z-index-10" style="background: white;" c-role="app-splash">
+      <div class="pos-abs cover flex-x-center flex-y-center z-index-10" style="background: white;" data-role="app-splash">
         <span>Please wait...</span>
       </div>
 
-      <section c-role="route-content content" class="flex-y-stretch">
+      <section data-role="route-content content" class="flex-y-stretch">
         
-        <div c-role="content-container" class="pos-rel wt-full flex-x-center flex-y-center  overflow-hidden">
+        <div data-role="content-container" class="pos-rel wt-full flex-x-center flex-y-center  overflow-hidden">
 
-          <div c-role="content-primary" style="position: relative; max-width: 800px;">
+          <div data-role="content-primary" style="position: relative; max-width: 800px;">
             
-            <h1 c-role="content-title"></h1>
+            <h1 data-role="content-title"></h1>
             <br />
 
             <ul id="content-grid">
-              <c-import c-namespace="html/tile/main">
-                <a c-role="tile-link" href="projects/" aria-label="Blog">
+              <chtml-import data-namespace="html/tile/main">
+                <a data-role="tile-link" href="projects/" aria-label="Blog">
                   <i class="icon icon-bokeyuan">@@</i>
                   <div class="wt-full" data-translate="Blog">Code</div>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/main">
-                <a c-role="tile-link" href="documentation/" aria-label="Blog">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/main">
+                <a data-role="tile-link" href="documentation/" aria-label="Blog">
                   <i class="icon icon-bokeyuan">@@</i>
                   <div class="wt-full" data-translate="Blog">Learn</div>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/half">
-                <a c-role="tile-link" href="/blog/guestbook/" aria-label="Guestbook" class="pos-abs cover">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/half">
+                <a data-role="tile-link" href="/blog/guestbook/" aria-label="Guestbook" class="pos-abs cover">
                   <i class="icon icon-liuyan">@</i>
                   <span data-translate="Guestbook">Partner</span>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/quarter">
-                <a c-role="tile-link" href="mailto:simon@tomotoes.com" aria-label="Email" target="_blank" class="pos-abs cover">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/quarter">
+                <a data-role="tile-link" href="mailto:simon@tomotoes.com" aria-label="Email" target="_blank" class="pos-abs cover">
                   <i class="icon icon-email">@</i>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/quarter">
-                <a c-role="tile-link" href="/blog/weibo/" aria-label="Weibo" class="pos-abs cover">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/quarter">
+                <a data-role="tile-link" href="/blog/weibo/" aria-label="Weibo" class="pos-abs cover">
                   <i class="icon icon-biaoqing">@</i>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/quarter">
-                <a c-role="tile-link" href="https://github.com/tomotoes" aria-label="Github" target="_blank" rel="noopener" class="pos-abs cover">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/quarter">
+                <a data-role="tile-link" href="https://github.com/tomotoes" aria-label="Github" target="_blank" rel="noopener" class="pos-abs cover">
                   <i class="icon icon-github">@</i>
                 </a>
-              </c-import>
-              <c-import c-namespace="html/tile/quarter">
-                <a c-role="tile-link" href="javascript:;" aria-label="other" class="pos-abs cover">
+              </chtml-import>
+              <chtml-import data-namespace="html/tile/quarter">
+                <a data-role="tile-link" href="javascript:;" aria-label="other" class="pos-abs cover">
                   <i class="icon icon-other">@</i>
                 </a>
-              </c-import>
+              </chtml-import>
             </ul>
           </div>
 
-          <div c-role="content-secondary" class="pos-abs cover d-none" style="background-color: white; opacity: 0;">
+          <div data-role="content-secondary" class="pos-abs cover d-none" style="background-color: white; opacity: 0;">
             <div class="margin-bottom:50px; flex-y-center flex-x-separate" style="padding: 25px;">
               <a style="display: inline-block;" href=""><img src="" alt="" /></a>
               <div class="">MENU</div>
@@ -233,10 +233,10 @@
 
         </div>
 
-        <script type="text/jsen">binding && tree.title.html(binding.title);</script>
+        <script type="text/scoped-js">binding && tree.title.html(binding.title);</script>
       </section>
             
-      <script type="text/jsen">
+      <script type="text/scoped-js">
         
         const timeline = Registry.create('Timeline');
         timeline.play([{
@@ -273,7 +273,7 @@
           }
         }
       </script>
-    </c-import>
+    </chtml-import>
     <!-- ---------------------------- -->
 
   </body>

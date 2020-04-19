@@ -5,7 +5,7 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="rgb(255,255,255)" />
+    <meta name="theme-color" content="blueviolet" />
     <base href="/" />
     
     <link rel="shortcut icon" href="favicon_io/favicon.ico" />
@@ -16,6 +16,7 @@
 	  <script src="//unpkg.com/@web-native-js/cui/ext/web-animations.min.js"></script>
     <script src="//unpkg.com/@web-native-js/cui/ext/hammer.min.js"></script>
     <!--
+ 
     <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/resets.css" />
     <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/canvas.css" />
 	
@@ -27,14 +28,14 @@
 
     <script src="/main.js"></script>
     <link type="text/css" rel="stylesheet" href="/main.css" />
-    <template is="c-bundle" src="/main.html"></template>
+    <template is="chtml-bundle" src="/main.html"></template>
 
-    <template is="c-bundle">
+    <template is="chtml-bundle">
 
       <!-- ---------------------------- -->
 
-      <ul c-namespace="html/list/sequence" style="list-style: none;">
-        <script type="text/jsen">
+      <ul data-namespace="html/list/sequence" style="list-style: none;">
+        <script type="text/scoped-js">
           // This timeline local variable will be seen by <li> items
           const timeline = Registry.create('Timeline');
           timeline.play([{
@@ -52,8 +53,8 @@
         </script>
       </ul>
 
-      <li c-role="item" c-namespace="html/listitem/sequence">
-        <script type="text/jsen">
+      <li data-role="item" data-namespace="html/listitem/sequence">
+        <script type="text/scoped-js">
           var io = Registry.create('IntersectionObserver', el, {once: true});
           io.observe(ee => {
             timeline.add(el);
@@ -63,25 +64,25 @@
 
       <!-- ---------------------------- -->
  
-      <c-import c-namespace="html/list/sequence/cards" class="grid-4"></c-import>
+      <chtml-import data-namespace="html/list/sequence/cards" class="grid-4"></chtml-import>
 
-      <c-import c-namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
+      <chtml-import data-namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; opacity: 0; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
         <div>
-          <div c-role="item-meta" class="d-none" style="margin-bottom: 10px;">
-            <div c-role="item-icon" style="width: 75px; height: 75x;"></div>
-            <div c-role="item-type" style="font-size: x-small; text-transform: uppercase;"></div>
+          <div data-role="item-meta" class="d-none" style="margin-bottom: 10px;">
+            <div data-role="item-icon" style="width: 75px; height: 75x;"></div>
+            <div data-role="item-type" style="font-size: x-small; text-transform: uppercase;"></div>
           </div>
-          <div c-role="item-label" class="h2"></div>
-          <div c-role="item-desc" style="margin-top: 10px;"></div>
+          <div data-role="item-label" class="h2"></div>
+          <div data-role="item-desc" style="margin-top: 10px;"></div>
         </div>
         <div class="col-12">
-          <div c-role="item-authors" c-namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
+          <div data-role="item-authors" data-namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
           <div class="flex-x-separate">
-            <c-import ondemand c-role="item-page" c-namespace="html/link/arrow"></c-import>
-            <c-import c-role="item-link" c-namespace="html/link/arrow" style="padding-right: 0px;"></c-import>
+            <chtml-import ondemand data-role="item-page" data-namespace="html/link/arrow"></chtml-import>
+            <chtml-import data-role="item-link" data-namespace="html/link/arrow" style="padding-right: 0px;"></chtml-import>
           </div>
         </div>
-        <script type="text/jsen">
+        <script type="text/scoped-js">
           if (binding) {
             if (binding.label) {
               if (binding.meta) {
@@ -106,24 +107,24 @@
          }
             
         </script>
-      </c-import>
+      </chtml-import>
 
       <!-- ---------------------------- -->
 
-      <a c-role="link" c-namespace="html/link/arrow" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;" href="">
-        <span c-role="link-label" style="padding: 5px"></span>
-        <span c-role="link-arrow" style="padding: 5px">&longrightarrow;</span>
+      <a data-role="link" data-namespace="html/link/arrow" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;" href="">
+        <span data-role="link-label" style="padding: 5px"></span>
+        <span data-role="link-arrow" style="padding: 5px">&longrightarrow;</span>
       </a>
 
-      <c-import c-namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></c-import>
+      <chtml-import data-namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></chtml-import>
 
       <!-- ---------------------------- -->
 
-      <div c-namespace="html/author" c-role="author" class="flex-y-center">
-        <a c-role="author-link" class="flex-x-center flex-y-center" style="width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background-color: silver;">
-          <img c-role="author-avatar" />
+      <div data-namespace="html/author" data-role="author" class="flex-y-center">
+        <a data-role="author-link" class="flex-x-center flex-y-center" style="width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background-color: silver;">
+          <img data-role="author-avatar" />
         </a>
-        <script type="text/jsen">
+        <script type="text/scoped-js">
           if (binding) {
             tree.link.attr({
               href: binding.link,
@@ -170,13 +171,15 @@
   
   <body>
     
-    <!-- ---------------------------- -->
-    <c-import c-namespace="html/route" c-role="route" id="app" class="pos-rel">
+    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">Web-Native is launching soon! We need you to make this work &longrightarrow;</a>
 
-      <main c-role="route-page page" class="pos-rel" style="background-color: blueviolet; color: white;">
+      <!-- ---------------------------- -->
+    <chtml-import data-namespace="html/route" data-role="route" id="app" class="pos-rel">
+
+      <main data-role="route-page page" class="pos-rel" style="background-color: blueviolet; color: white;">
 
         <header class="section">
-          <img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.5em; font-size: 3.6em;" />
+          <a href=""><img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.5em; font-size: 3.6em;" /></a>
           <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
 
           <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
@@ -196,9 +199,9 @@
     
               <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
                 <li style="">
-                  <c-import c-namespace="html/link/arrow/round">
-                    <span c-role="link-label">About Web-Native</span>
-                  </c-import>
+                  <chtml-import data-namespace="html/link/arrow/round">
+                    <span data-role="link-label">About Web-Native</span>
+                  </chtml-import>
                 </li>
               </ul>
             </div>
@@ -214,20 +217,20 @@
           <h2 id="the-engineering" style="font-size: 2em;">The Engineering</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
             <p>
-              - A conscious approach to solving modern engineering problems 
-              without the unnecessary abstractions over native web languages and APIs.
-              Web-Native engineering brings you closer to web standards!        
+              Web-Native engineering is our unique approach to problem solving that 
+              actively seeks native web languages and platform features for answers 
+              to modern web development.
             </p>
             <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
               <li style="">
-                <c-import c-namespace="html/link/arrow/round">
-                  <span c-role="link-label">Learn More</span>
-                </c-import>
+                <chtml-import data-namespace="html/link/arrow/round">
+                  <span data-role="link-label">Learn More</span>
+                </chtml-import>
               </li>
             </ul>
           </div>
 
-          <c-import c-namespace="html/list/sequence/cards//html/listitem/sequence/card" c-role="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 250px; grid-gap: 20px;"></c-import>
+          <chtml-import data-namespace="html/list/sequence/cards//html/listitem/sequence/card" data-role="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 300px; grid-gap: 20px;"></chtml-import>
           
         </section>
 
@@ -236,28 +239,27 @@
           <h2 id="the-evangelism" style="font-size: 2em;">The Evangelism</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
             <p>
-              - Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
-              See what engineers are passionate about on the new paradigm shift; share your own too.
+              We drive articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
+              <i>See what engineers are passionate about on the new paradigm shift; share your own too.</i>
             </p>
             <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
               <li style="">
-                <c-import c-namespace="html/link/arrow/round">
-                  <span c-role="link-label">Learn More</span>
-                </c-import>
+                <chtml-import data-namespace="html/link/arrow/round">
+                  <span data-role="link-label">Learn More</span>
+                </chtml-import>
               </li>
             </ul>
           </div>
 
-          <c-import c-namespace="html/list/sequence/cards//html/listitem/sequence/card" c-role="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></c-import>
+          <chtml-import data-namespace="html/list/sequence/cards//html/listitem/sequence/card" data-role="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></chtml-import>
 
         </section>
 
         <section class="section" style="border-top: 1px dashed silver;">
-          <div class="h1" style="padding-bottom: 10px; color: silver;">Launching Soon!</div>
           &copy; 2020 Oxford Harrison
           </section>
 
-        <script type="text/jsen">
+        <script type="text/scoped-js">
           if (binding) {
             tree.engineeringSection.bind(binding.engineeringSection);
             tree.evangelismSection.bind(binding.evangelismSection);
@@ -265,7 +267,7 @@
         </script>
       </main>
       
-    </c-import>
+    </chtml-import>
     <!-- ---------------------------- -->
 
   </body>

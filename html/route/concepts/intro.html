@@ -1,12 +1,12 @@
 
-	<c-import>
+	<chtml-import>
       
-      <div c-role="route-page page" class="flex-y-stretch" style="background:black; color:white">
+      <div data-role="route-page page" class="flex-y-stretch" style="background:black; color:white">
         
-        <div c-role="page-container" class="pos-rel wt-full flex-x-center flex-y-center  overflow-hidden">
+        <div data-role="page-container" class="pos-rel wt-full flex-x-center flex-y-center  overflow-hidden">
 
           <div>
-            <h1 c-role="page-title"></h1>
+            <h1 data-role="page-title"></h1>
             <ul>
               <li><a href="documentation/"><< Back to Documentation page</a></li>
               <li><a href=""><< Back to Home page</a></li>
@@ -15,8 +15,8 @@
 
         </div>
 
-        <script type="text/jsen">binding && tree.title.html(binding.title);</script>
+        <script type="text/scoped-js">binding && tree.title.html(binding.title);</script>
 
       </div>
       
-	</c-import>
+	</chtml-import>

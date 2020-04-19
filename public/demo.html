@@ -4,16 +4,16 @@ STRUCTURE
 (This is based on semantic markup.)
 --------------------------------------------
 
-<div c-role="card">
-    <div c-role="card-icon"></div>
+<div data-role="card">
+    <div data-role="card-icon"></div>
     <div>
-        <div c-role="card-title"></div>
-        <div c-role="card-desc"></div>
+        <div data-role="card-title"></div>
+        <div data-role="card-desc"></div>
     </div>
 </div>
 
 --------------------------------------------
-Above, we have used the "c-role" attribute to create relationships
+Above, we have used the "data-role" attribute to create relationships
 for the "card" component.
 
 Now, we have the following component binding, like a tree:
@@ -35,10 +35,10 @@ More on this shortly.
 
 
 
-<div c-role="card" style="display: flex;">
-    <div c-role="card-icon" style="width: 50px; height: 50px; border-radius: 50%; background: silver;"></div>
+<div data-role="card" style="display: flex;">
+    <div data-role="card-icon" style="width: 50px; height: 50px; border-radius: 50%; background: silver;"></div>
     <div>
-        <div c-role="card-title" style="font-weight: bold;"></div>
-        <div c-role="card-desc"></div>
+        <div data-role="card-title" style="font-weight: bold;"></div>
+        <div data-role="card-desc"></div>
     </div>
 </div>
