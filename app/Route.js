@@ -2,10 +2,9 @@
 /**
  * @imports
  */
-import _Route from '@web-native-js/cui/src/app/routing/Route.js';
-import Reflex from '@web-native-js/reflex';
+import {Nav, Reflex} from '@web-native-js/rx-components';
 
- export default class Route extends _Route {
+ export default class Route extends Nav.Route {
 
 	/**
 	 * @inheritdoc

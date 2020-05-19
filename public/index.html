@@ -10,262 +10,145 @@
     
     <link rel="shortcut icon" href="favicon_io/favicon.ico" />
     
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/cui/css/lib/resets.css" />
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/cui/css/lib/canvas.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/resets.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/canvas.css" />
 	
-	  <script src="//unpkg.com/@web-native-js/cui/ext/web-animations.min.js"></script>
-    <script src="//unpkg.com/@web-native-js/cui/ext/hammer.min.js"></script>
-    <!--
- 
-    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/resets.css" />
-    <link type="text/css" rel="stylesheet" href="http://localhost:8080/cui/css/lib/canvas.css" />
-	
-	  <script src="http://localhost:8080/cui/ext/web-animations.min.js"></script>
-    <script src="http://localhost:8080/cui/ext/hammer.min.js"></script>
-    -->
+	  <script src="//unpkg.com/@web-native-js/play-ui/ext/web-animations.min.js"></script>
+    <script src="//unpkg.com/@web-native-js/play-ui/ext/hammer.min.js"></script>
+    <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
 
     <script src="/main.js"></script>
     <link type="text/css" rel="stylesheet" href="/main.css" />
     <template is="chtml-bundle" src="/main.html"></template>
-
-    <template is="chtml-bundle">
-
-      <!-- ---------------------------- -->
-
-      <ul data-namespace="html/list/sequence" style="list-style: none;">
-        <script type="text/scoped-js">
-          // This timeline local variable will be seen by <li> items
-          const timeline = Registry.create('Timeline');
-          timeline.play([{
-            opacity: 0,
-            transform: {translate: [0, '100px']},
-          }, {
-            opacity: 1,
-            transform: {translate: [0, 0]},
-          }], {
-            delay: 400,
-            duration: 600,
-            easing: 'ease-out',
-            lag: 400,
-          });
-        </script>
-      </ul>
-
-      <li data-role="item" data-namespace="html/listitem/sequence">
-        <script type="text/scoped-js">
-          var io = Registry.create('IntersectionObserver', el, {once: true});
-          io.observe(ee => {
-            timeline.add(el);
-          });
-        </script>
-      </li>
-
-      <!-- ---------------------------- -->
- 
-      <chtml-import data-namespace="html/list/sequence/cards" class="grid-4"></chtml-import>
-
-      <chtml-import data-namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; opacity: 0; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
-        <div>
-          <div data-role="item-meta" class="d-none" style="margin-bottom: 10px;">
-            <div data-role="item-icon" style="width: 75px; height: 75x;"></div>
-            <div data-role="item-type" style="font-size: x-small; text-transform: uppercase;"></div>
-          </div>
-          <div data-role="item-label" class="h2"></div>
-          <div data-role="item-desc" style="margin-top: 10px;"></div>
-        </div>
-        <div class="col-12">
-          <div data-role="item-authors" data-namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
-          <div class="flex-x-separate">
-            <chtml-import ondemand data-role="item-page" data-namespace="html/link/arrow"></chtml-import>
-            <chtml-import data-role="item-link" data-namespace="html/link/arrow" style="padding-right: 0px;"></chtml-import>
-          </div>
-        </div>
-        <script type="text/scoped-js">
-          if (binding) {
-            if (binding.label) {
-              if (binding.meta) {
-                tree.meta.class('d-none', false);
-                tree.icon.attr('src', binding.meta.icon);
-                tree.type.html(binding.meta.type);
-              }
-              if (binding.page) {
-                tree.page.attr('href', binding.page);
-                tree.page.html(binding.label);
-              }
-              tree.label.html(binding.label);
-              tree.desc.html(binding.desc);
-              if (binding.authors) {
-                tree.authors.bind(binding.authors);
-              }
-              tree.link.attr('href', binding.link);
-              tree.link.tree.label.html(binding.cta || binding.label);
-            } else {
-              css({minWidth: '250px', background: 'none', border: '1px dashed white'});
-            }
-         }
-            
-        </script>
-      </chtml-import>
-
-      <!-- ---------------------------- -->
-
-      <a data-role="link" data-namespace="html/link/arrow" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;" href="">
-        <span data-role="link-label" style="padding: 5px"></span>
-        <span data-role="link-arrow" style="padding: 5px">&longrightarrow;</span>
-      </a>
-
-      <chtml-import data-namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></chtml-import>
-
-      <!-- ---------------------------- -->
-
-      <div data-namespace="html/author" data-role="author" class="flex-y-center">
-        <a data-role="author-link" class="flex-x-center flex-y-center" style="width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background-color: silver;">
-          <img data-role="author-avatar" />
-        </a>
-        <script type="text/scoped-js">
-          if (binding) {
-            tree.link.attr({
-              href: binding.link,
-              title: binding.name,
-            });
-            tree.avatar.attr('src', binding.avatar);
-          }
-        </script>
-      </div>
-
-       <!-- ---------------------------- -->
-
-     </template>
-    
-    <style type="text/css">
-    .section {
-      padding: 50px;
-    }
-    .grid-4 {
-      grid-template-columns: repeat(4, auto);
-    }
-    @media (max-width: 1100px) {
-      .grid-4 {
-        grid-template-columns: repeat(3, auto);
-      }
-    }
-    @media (max-width: 900px) {
-      .section {
-        padding-left: 40px;
-        padding-right: 40px;
-      }
-      .grid-4 {
-        grid-template-columns: repeat(2, auto);
-      }
-    }
-    @media (max-width: 600px) {
-      .grid-4 {
-        grid-template-columns: auto;
-      }
-    }
-    </style>
+    <template is="chtml-bundle" src="/main2.html"></template>
 
   </head>
   
-  <body>
+  <body style="font-family: 'Spartan', sans-serif;">
     
-    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">Web-Native is launching soon! We need you to make this work &longrightarrow;</a>
+    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">Please help the Web-Native project get through COVID-19 &longrightarrow;</a>
 
-      <!-- ---------------------------- -->
-    <chtml-import data-namespace="html/route" data-role="route" id="app" class="pos-rel">
+    <!-- ---------------------------- -->
+    <chtml-import namespace="html/route" scope="route" id="app" class="pos-rel" style="background-color: blueviolet; color: white; opacity: 0;">
+      
+      <script type="text/scoped-js">
+        $(this).play({opacity: 1});
+        if (current.active) {
+          $(this.scope.header.scope.primary).css('display', '');
+          $(this.scope.header.scope.secondary).css('display', 'none');
+          $(this.scope.footer).css({paddingTop: '15px', paddingBottom: '15px'});
+          $(this.scope.header).css({paddingTop: '15px', paddingBottom: '15px'});
+        } else {
+          $(this.scope.header.scope.primary).css('display', 'none');
+          $(this.scope.header.scope.secondary).css('display', '');
+          $(this.scope.footer).css({paddingTop: '', paddingBottom: ''});
+          $(this.scope.header).css({paddingTop: '', paddingBottom: ''});
+        }
+        
+      </script>
 
-      <main data-role="route-page page" class="pos-rel" style="background-color: blueviolet; color: white;">
+      <header scope="route-header header" class="section" style="border-bottom: 1px dashed silver;">
 
-        <header class="section">
-          <a href=""><img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.5em; font-size: 3.6em;" /></a>
+        <div scope="header-primary" class="flex-y-center" style="display: none;">
+          <a href="" class="flex-y-center">
+            <img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 2em;" />
+            <div class="h2" style="padding-left: 15px; font-size: 1.35em; font-weight: normal;">Web-Native</div>
+          </a>
+        </div>
+
+        <div scope="header-secondary">
+          <a href=""><img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
           <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
-
+  
           <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
             (.dev)
           </div>
           
           <div class="flex-y-stretch lg--d-block">
             <div>
-              <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
+              <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
                 <p>
-                  This is the open community for "web-native" development. Through 
-                  <a href="#the-engineering">engineering</a> and <a href="#the-evangelism">evangelism</a>, we're going ahead of the curve in 
-                  facilitating web-native languages, APIs and methodologies.
+                  Passion for native languages, platform features and APIs.
+                  We explore new ways to just <a class="a2" href="#tools">#useThePlatform</a>
+                  and happily share <a class="a2" href="#evangelism">what it feels like</a>.
                 </p>
-             </div>
+              </div>
               
     
               <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
                 <li style="">
-                  <chtml-import data-namespace="html/link/arrow/round">
-                    <span data-role="link-label">About Web-Native</span>
+                  <chtml-import namespace="html/link/arrow/round" href="/about/">
+                    <span scope="link-label">About Web-Native</span>
                   </chtml-import>
                 </li>
               </ul>
             </div>
-
+  
             <div class="col-grows">
             </div>
           </div>
+
+        </div>
+        
+      </header>
+
+      <main scope="route-page page" class="pos-rel" style="background-color: transparent;">
           
-        </header>
-
-        <section class="section" style="border-top: 1px dashed silver;">
-          
-          <h2 id="the-engineering" style="font-size: 2em;">The Engineering</h2>
-          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
-            <p>
-              Web-Native engineering is our unique approach to problem solving that 
-              actively seeks native web languages and platform features for answers 
-              to modern web development.
-            </p>
-            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
-              <li style="">
-                <chtml-import data-namespace="html/link/arrow/round">
-                  <span data-role="link-label">Learn More</span>
-                </chtml-import>
-              </li>
-            </ul>
-          </div>
-
-          <chtml-import data-namespace="html/list/sequence/cards//html/listitem/sequence/card" data-role="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 300px; grid-gap: 20px;"></chtml-import>
-          
-        </section>
-
-        <section class="section" style="border-top: 1px dashed silver;">
-          
-          <h2 id="the-evangelism" style="font-size: 2em;">The Evangelism</h2>
-          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em;">
-            <p>
-              We drive articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
-              <i>See what engineers are passionate about on the new paradigm shift; share your own too.</i>
-            </p>
-            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
-              <li style="">
-                <chtml-import data-namespace="html/link/arrow/round">
-                  <span data-role="link-label">Learn More</span>
-                </chtml-import>
-              </li>
-            </ul>
-          </div>
-
-          <chtml-import data-namespace="html/list/sequence/cards//html/listitem/sequence/card" data-role="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></chtml-import>
-
-        </section>
-
-        <section class="section" style="border-top: 1px dashed silver;">
-          &copy; 2020 Oxford Harrison
-          </section>
-
         <script type="text/scoped-js">
-          if (binding) {
-            tree.engineeringSection.bind(binding.engineeringSection);
-            tree.evangelismSection.bind(binding.evangelismSection);
+          if (engineeringSection || evangelismSection) {
+              this.scope.engineeringSection.bind(engineeringSection);
+              this.scope.evangelismSection.bind(evangelismSection);
           }
         </script>
+
+        <section id="tools" class="section">
+          
+          <h2 style="font-size: 2em;">Tools</h2>
+          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
+            <p>
+            Libraries, tools, and specifications that open up new possibilities on the web,
+            starting at the platform level. <i>Get more done with less dependencies!</i>
+            </p>
+            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+              <li style="">
+                <chtml-import namespace="html/link/arrow/round" href="/about/#tools">
+                  <span scope="link-label">Learn More</span>
+                </chtml-import>
+              </li>
+            </ul>
+          </div>
+
+          <chtml-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scope="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 350px; grid-gap: 20px;"></chtml-import>
+          
+        </section>
+
+        <section id="evangelism" class="section" style="border-top: 1px dashed silver;">
+          
+          <h2 style="font-size: 2em;">Evangelism</h2>
+          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
+            <p>
+              Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
+              <i>Follow us or join us.</i>
+            </p>
+            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+              <li style="">
+                <chtml-import namespace="html/link/arrow/round" href="/about/#evangelism">
+                  <span scope="link-label">Learn More</span>
+                </chtml-import>
+              </li>
+            </ul>
+          </div>
+
+          <chtml-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scope="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></chtml-import>
+
+        </section>
       </main>
+
+      <footer scope="route-footer" class="section" style="border-top: 1px dashed silver;">
+        &copy; 2020 Oxford Harrison
+      </footer>
       
     </chtml-import>
     <!-- ---------------------------- -->

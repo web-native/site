@@ -1,52 +1,5 @@
 
-
-	<!-- NAMESPACE: png/images/banner.fw -->
-	<img namespace="png/images/banner.fw" src="/assets/images/banner.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/banner2.fw -->
-	<img namespace="png/images/banner2.fw" src="/assets/images/banner2.fw.png" />
-
-
-
-	<!-- NAMESPACE: jpg/images/bg-light -->
-	<img namespace="jpg/images/bg-light" src="/assets/images/bg-light.jpg" />
-
-
-
-	<!-- NAMESPACE: png/images/illustrations/chtml-2.fw -->
-	<img namespace="png/images/illustrations/chtml-2.fw" src="/assets/images/illustrations/chtml-2.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/illustrations/chtml-3.fw -->
-	<img namespace="png/images/illustrations/chtml-3.fw" src="/assets/images/illustrations/chtml-3.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/illustrations/chtml.fw -->
-	<img namespace="png/images/illustrations/chtml.fw" src="/assets/images/illustrations/chtml.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/illustrations/structure.fw -->
-	<img namespace="png/images/illustrations/structure.fw" src="/assets/images/illustrations/structure.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/logo.fw -->
-	<img namespace="png/images/logo.fw" src="/assets/images/logo.fw.png" />
-
-
-
-	<!-- NAMESPACE: png/images/logo2.fw -->
-	<img namespace="png/images/logo2.fw" src="/assets/images/logo2.fw.png" />
-
-
-
-	<!-- NAMESPACE: html/route/about -->
-	<chtml-import namespace="html/route/about" style="background-image:url(assets/images/bg-light.jpg);">
+	<chtml-import style="background-image:url(assets/images/bg-light.jpg);">
       
         <div scope="route-page">
 
@@ -119,34 +72,3 @@
         </div>
       
 	</chtml-import>
-
-
-
-  <!-- NAMESPACE: html/route -->
-  <div namespace="html/route" scope="route" class="pos-rel d-none">
-    
-    <header scope="route-header header"></header>
-	  <main scope="route-page page" class="pos-rel wt-full" style="min-height: 90vh; background-color: white;"></main>
-	  <chtml-import namespace="html/routegroup//html/route/[]" scope="route-subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></chtml-import>
-    
-    <script type="text/scoped-js">
-      $(this).class('d-none', !active);
-      if (page) {
-          this.scope.page.bind(page);
-          this.scope.subroutes.bind(subroutes);
-          if (current.active) {
-              $(this.scope.page).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.subroutes).css('display', '').then(subroutes => subroutes.play({transform: 'scale(1)', opacity: 1,}, {duration: 00}));
-          } else {
-              $(this.scope.subroutes).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.page).css('display', '').then(page => page.play({transform: 'scale(1)', opacity: 1,}, {duration: 200}));
-        }
-      }
-    </script>
-    
-  </div>
-
-
-
-     <!-- NAMESPACE: html/routegroup -->
-     <section namespace="html/routegroup"></section>

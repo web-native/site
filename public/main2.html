@@ -1,0 +1,84 @@
+      
+      <ul is="playui-ul" namespace="html/list/sequence" style="list-style: none;"></ul>
+
+      <li is="playui-li" scope="item" namespace="html/listitem/sequence"></li>
+
+      <!-- ---------------------------- -->
+ 
+      <chtml-import namespace="html/list/sequence/cards" class="grid-4"></chtml-import>
+
+      <chtml-import namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; opacity: 1; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
+
+        <script type="text/scoped-js">
+          if (label) {
+              if (meta) {
+                  $(this.scope.meta).class('d-none', false);
+                  $(this.scope.icon).attr('src', meta.icon);
+                  $(this.scope.type).html(meta.type);
+              }
+              if (link1) {
+                  $(this.scope.link1).attr('href', link1[0]);
+                  $(this.scope.link1).html(link1[1]);
+              }
+              $(this.scope.label).html(label);
+              $(this.scope.desc).html(desc);
+              if (tags) {
+                  $(this.scope.tags).html(tags.join(' &middot; '));
+              }
+              if (authors) {
+                  this.scope.authors.bind(authors);
+              }
+              $(this.scope.link2).attr('href', link2[0]);
+              $(this.scope.link2.scope.label).html(link2[1] || label);
+          } else {
+              $(this).css({minWidth: '250px', background: 'none', border: '1px dashed white'});
+          }
+        </script>
+
+        <div>
+          <div scope="item-meta" class="d-none" style="margin-bottom: 10px;">
+            <div scope="item-icon" style="width: 75px; height: 75x;"></div>
+            <div scope="item-type" style="font-size: x-small; text-transform: uppercase;"></div>
+          </div>
+          <div scope="item-label" class="h2"></div>
+          <p scope="item-desc" style="margin-top: 10px;"></p>
+          <div scope="item-tags" style="margin-top: 10px; color: blueviolet; font-size: smaller; font-weight: bold;"></div>
+        </div>
+        <div class="col-12">
+          <div scope="item-authors" namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
+          <div class="flex-x-separate">
+            <chtml-import ondemand scope="item-link1" namespace="html/link/arrow" class="basic-arrowed"></chtml-import>
+            <chtml-import scope="item-link2" namespace="html/link/arrow" style="padding-right: 0px;"></chtml-import>
+          </div>
+        </div>
+
+      </chtml-import>
+
+      <!-- ---------------------------- -->
+
+      <a scope="link" namespace="html/link/arrow" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;">
+        <span scope="link-label" style="padding: 5px"></span>
+        <span scope="link-arrow" style="padding: 5px">&longrightarrow;</span>
+      </a>
+
+      <chtml-import namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></chtml-import>
+
+      <!-- ---------------------------- -->
+
+      <div namespace="html/author" scope="author" class="flex-y-center">
+
+        <script type="text/scoped-js">
+          if (link) {
+              $(this.scope.link).attr({
+                  href: link,
+                  title: name,
+              });
+              $(this.scope.avatar).attr('src', avatar);
+          }
+        </script>
+
+        <a scope="author-link" class="flex-x-center flex-y-center" style="width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background-color: silver;">
+          <img scope="author-avatar" />
+        </a>
+
+      </div>
