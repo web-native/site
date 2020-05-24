@@ -2,7 +2,7 @@
 /**
  * @imports
  */
-import {Nav, Reflex} from '@web-native-js/rx-components';
+import {Nav, Reflex} from '@web-native-js/observables';
 
  export default class Route extends Nav.Route {
 

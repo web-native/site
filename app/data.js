@@ -23,11 +23,11 @@ const data = {
             link2: ['https://github.com/web-native/play-ui', 'GitHub',],
         },
         {
-            label: 'Rx Components',
-            desc: 'A collection of Reflex-based components (routing, forms, collections and more) for building client-side applications.',
+            label: 'Observables',
+            desc: 'Application components and client-side APIs implemented as objects with observable properties.',
             tags: ['#ReflexActions'],
-            link1: ['https://docs.web-native.dev/rx-components/', 'DOCS',],
-            link2: ['https://github.com/web-native/rx-components', 'GitHub',],
+            link1: ['https://docs.web-native.dev/observables/', 'DOCS',],
+            link2: ['https://github.com/web-native/observables', 'GitHub',],
         },
         {
             label: 'Reflex',

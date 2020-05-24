@@ -1,5 +1,6 @@
 
 import Chtml, {Reflex, ENV} from '@web-native-js/chtml';
+import {Registry} from '@web-native-js/observables';
 import CE from './custom-elements.js';
 import Route from './Route';
 import data from './data.js';
@@ -19,18 +20,6 @@ var app = new Route({
                 title: 'Finally, a Web-Native UI Framework!',
             },
         },
-        _reflex: {
-            title: 'Reflex - a reactivity library :: Web-Native',
-            page: {
-                title: 'This is Reflex page!',
-            },
-        },
-        _jsen: {
-            title: 'JavaScript Object Notation (JSEN) :: Web-Native',
-            page: {
-                title: 'This is JSEN page!',
-            },
-        },
     }),
 });
 
@@ -41,6 +30,8 @@ ENV.ScopedJS.globals = {
     alert: alert.bind(window),
     prompt: prompt.bind(window),
     confirm: confirm.bind(window),
+    monetization: Registry.create('Monetization'),
+    router: Registry.create('Router'),
 };
 Chtml.init(window);
 CE(window);

@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Toursom</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162031816-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'UA-162031816-2');
+    </script>
+
+    <title>Welcome to Web-Native</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,6 +20,15 @@
     <base href="/" />
     
     <link rel="shortcut icon" href="favicon_io/favicon.ico" />
+
+    <!--
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/resets.css" />
+    <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/canvas.css" />
+	
+	  <script src="http://localhost:8080/play-ui/ext/web-animations.min.js"></script>
+    <script src="http://localhost:8080/play-ui/ext/hammer.min.js"></script>
+    <script src="http://localhost:8080/play-ui/dist/main.js"></script>
+    -->
     
     <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/resets.css" />
     <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/canvas.css" />
@@ -21,44 +41,44 @@
 
     <script src="/main.js"></script>
     <link type="text/css" rel="stylesheet" href="/main.css" />
-    <template is="chtml-bundle" src="/main.html"></template>
-    <template is="chtml-bundle" src="/main2.html"></template>
+    <template is="html-bundle" src="/main.html"></template>
+    <template is="html-bundle" src="/main2.html"></template>
 
   </head>
   
-  <body style="font-family: 'Spartan', sans-serif;">
+  <body style="font-family: sans-serif;">
     
-    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">Please help the Web-Native project get through COVID-19 &longrightarrow;</a>
+    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">This project needs your support to get through COVID-19 &longrightarrow;</a>
 
     <!-- ---------------------------- -->
-    <chtml-import namespace="html/route" scope="route" id="app" class="pos-rel" style="background-color: blueviolet; color: white; opacity: 0;">
+    <html-import namespace="html/route" id="app" class="pos-rel" style="background-color: blueviolet; color: white; opacity: 0;">
       
       <script type="text/scoped-js">
         $(this).play({opacity: 1});
         if (current.active) {
-          $(this.scope.header.scope.primary).css('display', '');
-          $(this.scope.header.scope.secondary).css('display', 'none');
-          $(this.scope.footer).css({paddingTop: '15px', paddingBottom: '15px'});
-          $(this.scope.header).css({paddingTop: '15px', paddingBottom: '15px'});
+          monetization.start();
+          $(this.scopeTree.header.scopeTree.primary).css('display', '');
+          $(this.scopeTree.header.scopeTree.secondary).css('display', 'none');
+          $(this.scopeTree.footer).css({paddingTop: '15px', paddingBottom: '15px'});
+          $(this.scopeTree.header).css({paddingTop: '15px', paddingBottom: '15px'});
         } else {
-          $(this.scope.header.scope.primary).css('display', 'none');
-          $(this.scope.header.scope.secondary).css('display', '');
-          $(this.scope.footer).css({paddingTop: '', paddingBottom: ''});
-          $(this.scope.header).css({paddingTop: '', paddingBottom: ''});
+          $(this.scopeTree.header.scopeTree.primary).css('display', 'none');
+          $(this.scopeTree.header.scopeTree.secondary).css('display', '');
+          $(this.scopeTree.footer).css({paddingTop: '', paddingBottom: ''});
+          $(this.scopeTree.header).css({paddingTop: '', paddingBottom: ''});
         }
-        
       </script>
 
-      <header scope="route-header header" class="section" style="border-bottom: 1px dashed silver;">
+      <header root scoped:id="header" class="section" style="border-bottom: 1px dashed silver;">
 
-        <div scope="header-primary" class="flex-y-center" style="display: none;">
+        <div scoped:id="primary" class="flex-y-center" style="display: none;">
           <a href="" class="flex-y-center">
             <img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 2em;" />
             <div class="h2" style="padding-left: 15px; font-size: 1.35em; font-weight: normal;">Web-Native</div>
           </a>
         </div>
 
-        <div scope="header-secondary">
+        <div scoped:id="secondary">
           <a href=""><img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
           <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
   
@@ -70,18 +90,17 @@
             <div>
               <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
                 <p>
-                  Passion for native languages, platform features and APIs.
-                  We explore new ways to just <a class="a2" href="#tools">#useThePlatform</a>
-                  and happily share <a class="a2" href="#evangelism">what it feels like</a>.
+                  An open community for advancing native web technologies, platform features and APIs
+                  through <a class="a2" href="#tools">engineering</a> and <a class="a2" href="#evangelism">evangelism</a>
                 </p>
               </div>
               
     
               <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
                 <li style="">
-                  <chtml-import namespace="html/link/arrow/round" href="/about/">
-                    <span scope="link-label">About Web-Native</span>
-                  </chtml-import>
+                  <html-import namespace="html/link/arrow/round" href="/about/">
+                    <span scoped:id="label">About Web-Native</span>
+                  </html-import>
                 </li>
               </ul>
             </div>
@@ -94,12 +113,12 @@
         
       </header>
 
-      <main scope="route-page page" class="pos-rel" style="background-color: transparent;">
+      <main root scoped:id="page" class="pos-rel" style="background-color: transparent;">
           
         <script type="text/scoped-js">
           if (engineeringSection || evangelismSection) {
-              this.scope.engineeringSection.bind(engineeringSection);
-              this.scope.evangelismSection.bind(evangelismSection);
+              this.scopeTree.engineeringSection.bind(engineeringSection);
+              this.scopeTree.evangelismSection.bind(evangelismSection);
           }
         </script>
 
@@ -108,19 +127,19 @@
           <h2 style="font-size: 2em;">Tools</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
             <p>
-            Libraries, tools, and specifications that open up new possibilities on the web,
-            starting at the platform level. <i>Get more done with less dependencies!</i>
+            Libraries, tools, and specifications that bridge major gaps on the web,
+            starting at the platform level.
             </p>
             <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
               <li style="">
-                <chtml-import namespace="html/link/arrow/round" href="/about/#tools">
-                  <span scope="link-label">Learn More</span>
-                </chtml-import>
+                <html-import namespace="html/link/arrow/round" href="/about/#tools">
+                  <span scoped:id="label">Learn More</span>
+                </html-import>
               </li>
             </ul>
           </div>
 
-          <chtml-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scope="page-engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 350px; grid-gap: 20px;"></chtml-import>
+          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: auto; grid-gap: 20px;"></html-import>
           
         </section>
 
@@ -129,28 +148,27 @@
           <h2 style="font-size: 2em;">Evangelism</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
             <p>
-              Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
-              <i>Follow us or join us.</i>
+            #Hashtags, Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
             </p>
             <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
               <li style="">
-                <chtml-import namespace="html/link/arrow/round" href="/about/#evangelism">
-                  <span scope="link-label">Learn More</span>
-                </chtml-import>
+                <html-import namespace="html/link/arrow/round" href="/about/#evangelism">
+                  <span scoped:id="label">Learn More</span>
+                </html-import>
               </li>
             </ul>
           </div>
 
-          <chtml-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scope="page-evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></chtml-import>
+          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></html-import>
 
         </section>
       </main>
 
-      <footer scope="route-footer" class="section" style="border-top: 1px dashed silver;">
+      <footer scoped:id="footer" class="section" style="border-top: 1px dashed silver;">
         &copy; 2020 Oxford Harrison
       </footer>
       
-    </chtml-import>
+    </html-import>
     <!-- ---------------------------- -->
 
   </body>

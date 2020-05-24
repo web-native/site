@@ -1,21 +1,21 @@
 
-  <div scope="route" class="pos-rel d-none">
+  <div root class="pos-rel d-none">
     
-    <header scope="route-header header"></header>
-	  <main scope="route-page page" class="pos-rel wt-full" style="min-height: 90vh; background-color: white;"></main>
-	  <chtml-import namespace="html/routegroup//html/route/[]" scope="route-subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></chtml-import>
+    <header root scoped:id="header"></header>
+	  <main root scoped:id="page" class="pos-rel wt-full" style="min-height: 90vh; background-color: white;"></main>
+	  <html-import namespace="html/routegroup//html/route/[]" scoped:id="subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></html-import>
     
     <script type="text/scoped-js">
       $(this).class('d-none', !active);
       if (page) {
-          this.scope.page.bind(page);
-          this.scope.subroutes.bind(subroutes);
+          this.scopeTree.page.bind(page);
+          this.scopeTree.subroutes.bind(subroutes);
           if (current.active) {
-              $(this.scope.page).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.subroutes).css('display', '').then(subroutes => subroutes.play({transform: 'scale(1)', opacity: 1,}, {duration: 00}));
+              $(this.scopeTree.page).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
+              $(this.scopeTree.subroutes).css('display', '').then(subroutes => subroutes.play({transform: 'scale(1)', opacity: 1,}, {duration: 00}));
           } else {
-              $(this.scope.subroutes).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.page).css('display', '').then(page => page.play({transform: 'scale(1)', opacity: 1,}, {duration: 200}));
+              $(this.scopeTree.subroutes).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
+              $(this.scopeTree.page).css('display', '').then(page => page.play({transform: 'scale(1)', opacity: 1,}, {duration: 200}));
         }
       }
     </script>

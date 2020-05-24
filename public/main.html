@@ -46,19 +46,25 @@
 
 
 	<!-- NAMESPACE: html/route/about -->
-	<chtml-import namespace="html/route/about" style="background-image:url(assets/images/bg-light.jpg);">
+	<html-import namespace="html/route/about" style="background-image:url(assets/images/bg-light.jpg);">
       
-        <div scope="route-page">
+        <div scoped:id="page">
 
           <section class="section" style="color: gray;">
             
             <h2>About</h2>
             <br />
             <p>
-            Web-Native is new and intends to be an open community for developers who are passionate
-            about native languages, platform features and APIs. If that describes you, please feel free to
-            join! Simply drop us a mail at <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
-            (A formal onboarding process is yet to be established; and, no problem if you want to help with that.)
+            Web-Native is a new community for developers who are passionate
+            about native languages, platform features and APIs. (This is so new that we haven't launched officially.)
+            You're welcome in, as there's every chance that our mission is here describing the very values you care about!
+            Meet fellow developers and other stakeholders who are passionate about making the web work for our everyday need.
+            </p>
+
+            <br />
+            <p>
+            Simply drop us a mail at <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
+            (While we work on a formal onboarding process. And, no problem if you want to help with that.)
             </p>
 
             <br />
@@ -66,18 +72,23 @@
             <h2 id="tools">Web-Native Tools</h2>
             <br />
             <p>
-            We develop libraries, tools, and specifications that open up new possibilities on the web,
-            starting at the platform level. We want anyone to be able to get more done with less dependencies!
-            Our work aims to ease-out the limitations that has historically made this difficult.
+            We develop libraries, tools, and specifications that bridge major gaps on our toolbox and on the web platform itself.
+            In fact, the most of our experiments are each headed for a standards track and eventual merging with
+            the platform. With a more empowering platform, we can all just #useThePlatform and get more done with less dependencies!
             </p>
 
             <br />
             <p>
-            Feel free to visit <a style="color: blueviolet;" href="https://github.com/web-native">our repos on Github</a>
+            Check out <a style="color: blueviolet;" href="https://github.com/web-native">our Github repos</a>
             and <a style="color: blueviolet;" href="https://docs.web-native.dev">our documentation site</a>.
-            Feel free to be part of this! If you already have opensource tools that fit into our mission, you've found a home for it!
-            We'd love to promote it! If you want to help with <i>web-native development</i> in some other ways,
-            please reach out at <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
+            Feel free to be part of this! If you already have, or are working on, opensource tools for the good of the general web,
+            we'd love to work with you! If you, otherwise, want to help with <i>Web-Native</i> in some other way,
+            we'd be more than glad.
+            </p>
+
+            <br />
+            <p>
+            Please reach out at <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
             </p>
 
             <br />
@@ -85,26 +96,33 @@
             <h2 id="evangelism">Evangelism</h2>
             <br />
             <p>
-            The web platform has never been this exciting! Through articles, talks, conferences,
-            meetups, trainings and workshops, we will be sharing just how it feels!
+            The web platform has never been this exciting! Through #hashtags, articles, talks, conferences,
+            meetups, trainings and workshops, we will be sharing the new possibilities and breakthroughs across the web that
+            are shaping the future of the web!
             </p>
 
             <br />
             <p>
-            Feel free to be part of this! If you already have written about new possibilities on the platform,
-            or want to help with <i>web-native evangelism</i> in some other ways,
-            please reach out at <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
+            Feel free to add your voice or let us know how we could work together. Simply reach out at
+            <a style="color: blueviolet;" href="mailto:join@web-native.dev">join@web-native.dev</a>.
             </p>
 
             <br />
             <br />
-            <h2 id="covid19-support">COVID19 Support</h2>
+            <h2 id="covid19-support">COVID19 Distress Call</h2>
             <br />
             <p>
-            Keeping the lights on in the dark wake of COVID19 is not a trivial thing to do! The financial weight
-            of the Web-Native project is currently already overwhelming! We however believe in the support of the opensource
-            community to get by. We have a <a style="color: blueviolet;" href="https://patreon.com/ox_harris">Patreon campaign here</a> where you can easily drop us a stipend.
-            We've also worked at rewarding your kind gesture with exciting perks. 
+            COVID19 has brought much hardship to our work! Trying to keep the lights on is becoming
+            more financially difficult to do. But being part of the larger opensource community,
+            we believe we are not alone! We are relying on your support to get the Web-Native project
+            through these difficult times.
+            </p>
+
+            <br />
+            <p>
+            Please visit our a <a style="color: blueviolet;" href="https://patreon.com/ox_harris">Patreon page</a>
+            to drop us a stipend. Even the smallest of a support can go a long way, and won't be going
+            unnoticed.
             </p>
 
             <br />
@@ -112,34 +130,34 @@
             <h2 id="contact">Contact</h2>
             <br />
             <p>
-            Oxford Harrison - <a style="color: blueviolet;" href="oxharriscreative@gmail.com">oxharriscreative@gmail.com</a>. 
+            Oxford Harrison - <a style="color: blueviolet;" href="mailto:oxharriscreative@gmail.com">oxharriscreative@gmail.com</a>. 
             </p>
            </section>
 
         </div>
       
-	</chtml-import>
+	</html-import>
 
 
 
   <!-- NAMESPACE: html/route -->
-  <div namespace="html/route" scope="route" class="pos-rel d-none">
+  <div namespace="html/route" root class="pos-rel d-none">
     
-    <header scope="route-header header"></header>
-	  <main scope="route-page page" class="pos-rel wt-full" style="min-height: 90vh; background-color: white;"></main>
-	  <chtml-import namespace="html/routegroup//html/route/[]" scope="route-subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></chtml-import>
+    <header root scoped:id="header"></header>
+	  <main root scoped:id="page" class="pos-rel wt-full" style="min-height: 90vh; background-color: white;"></main>
+	  <html-import namespace="html/routegroup//html/route/[]" scoped:id="subroutes" style="max-width: 100%; display: none; opacity: 0; transform: scale(0.95);"></html-import>
     
     <script type="text/scoped-js">
       $(this).class('d-none', !active);
       if (page) {
-          this.scope.page.bind(page);
-          this.scope.subroutes.bind(subroutes);
+          this.scopeTree.page.bind(page);
+          this.scopeTree.subroutes.bind(subroutes);
           if (current.active) {
-              $(this.scope.page).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.subroutes).css('display', '').then(subroutes => subroutes.play({transform: 'scale(1)', opacity: 1,}, {duration: 00}));
+              $(this.scopeTree.page).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
+              $(this.scopeTree.subroutes).css('display', '').then(subroutes => subroutes.play({transform: 'scale(1)', opacity: 1,}, {duration: 00}));
           } else {
-              $(this.scope.subroutes).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
-              $(this.scope.page).css('display', '').then(page => page.play({transform: 'scale(1)', opacity: 1,}, {duration: 200}));
+              $(this.scopeTree.subroutes).css({display: 'none', transform: 'scale(0.95)', opacity: 0,});
+              $(this.scopeTree.page).css('display', '').then(page => page.play({transform: 'scale(1)', opacity: 1,}, {duration: 200}));
         }
       }
     </script>
