@@ -16,8 +16,8 @@ const data = {
             link2: ['https://github.com/web-native/chtml', 'GitHub',],
         },
         {
-            label: 'Play UI',
-            desc: 'A resilient, jQuery-inspired DOM abstraction API and an intuitive UI manipulation library.',
+            label: 'PlayUI',
+            desc: 'A resilient, jQuery-inspired DOM API and an intuitive UI manipulation library.',
             tags: ['#AsynchronousDOM', '#UIPhysics'],
             link1: ['https://docs.web-native.dev/play-ui/', 'DOCS',],
             link2: ['https://github.com/web-native/play-ui', 'GitHub',],
