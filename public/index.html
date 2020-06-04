@@ -49,38 +49,57 @@
   
   <body style="font-family: sans-serif;">
     
-    <a class="h2" href="https://patreon.com/ox_harris" target="blank" style="display: block; padding: 15px; font-size: larger; text-decoration: none; text-align: center; background-color: skyblue; color: white;">We need your support to get through COVID-19 &longrightarrow;</a>
+    <div root class="h2" style="display: block; padding: 15px; text-align: center; background-color: gainsboro; color: black; border-bottom: 5px solid yellow">
+      
+      <span>Support the Web-Native project:</span>
+      
+      <button scoped:id="monetizationStart" class="support-button" title="Send micropayment from your browser (from your Web Monetization wallet)">from your browser</button>
+      <span scoped:id="monetizationActive" class="d-none">
+        <div style="display: inline-block; padding: 5px; font-size: smaller;">
+          <span scoped:id="monetizationTotal"></span>
+          <span scoped:id="monetizationCurrency"></span>
+        </div>
+        <button scoped:id="monetizationStop" class="support-button" title="Stop sending micropayment">stop</button>
+      </span>
+      <a href="https://patreon.com/ox_harris" target="blank" class="support-button">on Patreon &longrightarrow;</a>
+      
+      <script type="text/scoped-js">
+        // Display
+        $(this.scopeTree.monetizationActive).class('d-none', monetization.state !== 'started');
+        $(this.scopeTree.monetizationTotal).html(monetization.sessionTotal.value);
+        $(this.scopeTree.monetizationCurrency).html(monetization.currency);
+        // Controls
+        $(this.scopeTree.monetizationStart).on('click', () => monetization.start());
+        $(this.scopeTree.monetizationStop).on('click', () => monetization.stop());
+      </script>
+
+    </div>
 
     <!-- ---------------------------- -->
-    <html-import namespace="html/route" id="app" class="pos-rel" style="background-color: blueviolet; color: white; opacity: 0;">
+    <html-import namespace="html/route" id="app" class="pos-rel" style="background-color: white; color: gray; opacity: 0;">
       
       <script type="text/scoped-js">
         $(this).play({opacity: 1});
         if (current.active) {
-          monetization.start();
           $(this.scopeTree.header.scopeTree.primary).css('display', '');
           $(this.scopeTree.header.scopeTree.secondary).css('display', 'none');
-          $(this.scopeTree.footer).css({paddingTop: '15px', paddingBottom: '15px'});
-          $(this.scopeTree.header).css({paddingTop: '15px', paddingBottom: '15px'});
         } else {
           $(this.scopeTree.header.scopeTree.primary).css('display', 'none');
           $(this.scopeTree.header.scopeTree.secondary).css('display', '');
-          $(this.scopeTree.footer).css({paddingTop: '', paddingBottom: ''});
-          $(this.scopeTree.header).css({paddingTop: '', paddingBottom: ''});
         }
       </script>
 
-      <header root scoped:id="header" class="section" style="border-bottom: 1px dashed silver;">
+      <header root scoped:id="header" class="section" style="border-bottom: 1px solid silver;">
 
         <div scoped:id="primary" class="flex-y-center" style="display: none;">
           <a href="" class="flex-y-center">
-            <img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 2em;" />
+            <img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 2em;" />
             <div class="h2" style="padding-left: 15px; font-size: 1.35em; font-weight: normal;">Web-Native</div>
           </a>
         </div>
 
         <div scoped:id="secondary">
-          <a href=""><img src="/assets/images/logo.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
+          <a href=""><img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
           <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
   
           <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
@@ -114,7 +133,7 @@
         
       </header>
 
-      <main root scoped:id="page" class="pos-rel" style="background-color: transparent;">
+      <main root scoped:id="page" class="pos-rel" style="">
           
         <script type="text/scoped-js">
           if (engineeringSection || evangelismSection) {
@@ -123,7 +142,7 @@
           }
         </script>
 
-        <section id="tools" class="section">
+        <section id="tools" class="section" style="">
           
           <h2 style="font-size: 2em;">Tools</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
@@ -140,11 +159,11 @@
             </ul>
           </div>
 
-          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="engineeringSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 350px; grid-gap: 20px;"></html-import>
+          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="engineeringSection" style="margin-top: 30px; line-height: 1.6em; grid-auto-rows: 350px;"></html-import>
           
         </section>
 
-        <section id="evangelism" class="section" style="border-top: 1px dashed silver;">
+        <section id="evangelism" class="section" style="border-top: 1px solid silver; background-color: whitesmoke;">
           
           <h2 style="font-size: 2em;">Evangelism</h2>
           <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
@@ -160,12 +179,12 @@
             </ul>
           </div>
 
-          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="evangelismSection" style="margin-top: 30px; line-height: 1.6em; display: grid; grid-auto-rows: 450px; grid-gap: 20px;"></html-import>
+          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="evangelismSection" style="margin-top: 30px; line-height: 1.6em; grid-auto-rows: 450px;"></html-import>
 
         </section>
       </main>
 
-      <footer scoped:id="footer" class="section" style="border-top: 1px dashed silver;">
+      <footer scoped:id="footer" class="section" style="border-top: 1px solid silver;">
         &copy; 2020 Oxford Harrison
       </footer>
       

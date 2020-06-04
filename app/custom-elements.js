@@ -25,7 +25,7 @@ export default function(Window) {
             super();
 			var sequenceA = new Sequence;
 			var sequenceB = new Sequence;
-			var params = {lag: 300, oneoff: true, duration: 600};
+			var params = {lag: 150, oneoff: true, duration: 300};
 			// ----------------
             sequenceA.play([{
 				opacity: 0,

@@ -7,7 +7,7 @@
  
       <html-import namespace="html/list/sequence/cards" class="grid-4"></html-import>
 
-      <html-import namespace="html/listitem/sequence/card" class="flex-y-separate flex-wrap" style="padding: 25px; color: black; background-color: white; opacity: 1; border-radius: 5px; box-shadow: 0px 0px 2.5px rgba(0,0,0,0.25), 0px 2.5px 2.5px rgba(0,0,0,0.25);">
+      <html-import namespace="html/listitem/sequence/card" class="tile round-tile flex-y-separate flex-wrap">
 
         <script type="text/scoped-js">
           if (label) {
@@ -42,13 +42,13 @@
           </div>
           <div scoped:id="label" class="h2"></div>
           <p scoped:id="desc" style="margin-top: 10px;"></p>
-          <div scoped:id="tags" style="margin-top: 10px; color: blueviolet; font-size: smaller; font-weight: bold;"></div>
+          <div scoped:id="tags" style="margin-top: 10px; font-size: smaller; font-weight: bold;"></div>
         </div>
         <div class="col-12">
           <div scoped:id="authors" namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
           <div class="flex-x-separate">
-            <html-import ondemand scoped:id="link1" namespace="html/link/arrow" class="basic-arrowed"></html-import>
-            <html-import scoped:id="link2" namespace="html/link/arrow" style="padding-right: 0px;"></html-import>
+            <html-import ondemand scoped:id="link1" namespace="html/link/arrow" class="basic-arrowed" style="font-weight: normal"></html-import>
+            <html-import scoped:id="link2" namespace="html/link/arrow" style="padding-right: 0px; font-weight: normal;"></html-import>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
         <span scoped:id="arrow" style="padding: 5px">&longrightarrow;</span>
       </a>
 
-      <html-import namespace="html/link/arrow/round" style="border: 2px solid silver; border-radius: 5px;"></html-import>
+      <html-import namespace="html/link/arrow/round" class="round-tile"></html-import>
 
       <!-- ---------------------------- -->
 
