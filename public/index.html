@@ -65,7 +65,9 @@
       
       <script type="text/scoped-js">
         // Display
+        $(this.scopeTree.monetizationStart).class('d-none', monetization.state === 'started');
         $(this.scopeTree.monetizationActive).class('d-none', monetization.state !== 'started');
+        // Total
         $(this.scopeTree.monetizationTotal).html(monetization.sessionTotal.value);
         $(this.scopeTree.monetizationCurrency).html(monetization.currency);
         // Controls
