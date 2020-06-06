@@ -1,6 +1,6 @@
 
 import Chtml, {Reflex, ENV} from '@web-native-js/chtml';
-import {Nav, Money} from '@web-native-js/observables';
+import {Navigator, Money} from '@web-native-js/reflex-components';
 import CE from './custom-elements.js';
 import Route from './Route.js';
 import data from './data.js';
@@ -30,8 +30,8 @@ ENV.ScopedJS.globals = {
     alert: alert.bind(window),
     prompt: prompt.bind(window),
     confirm: confirm.bind(window),
-    router: Nav.Router.init(),
-    monetization: Money.Monetization.init('$ilp.uphold.com/g7MhU9HPWgzy'),
+    router: Navigator.Router.init(),
+    monetization: Money.WebMonetization.init('$ilp.uphold.com/g7MhU9HPWgzy', {prompt: true}),
 };
 Chtml.init(window);
 CE(window);
