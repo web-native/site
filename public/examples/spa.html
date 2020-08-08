@@ -1,0 +1,54 @@
+<html>
+
+    <head>
+
+        <title>An SPA Example</title>
+        <template name="route">
+
+            <template name="home">
+                <h1 partials-slot="headline">
+                    Welcome Home!
+                </h1>
+                <p partials-slot="content">
+                    <a href="#/about">About Me</a>
+                </p>
+            </template>
+
+            <template name="about">
+                <h1 partials-slot="headline">
+                    About Me!
+                </h1>
+                <p partials-slot="content">
+                    <a href="#/home">Back to Home</a>
+                </p>
+            </template>
+
+        </template>
+
+    </head>
+
+    <body template="route/home">
+
+        <header></header>
+
+        <main>
+            <div id="banner">
+                <partials-slot name="headline">404</partials-slot>
+            </div>
+            <div>
+                <partials-slot name="content">Page not Found!</partials-slot>
+            </div>
+        </main>
+
+        <footer></footer>
+
+        <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
+        <script>
+            window.addEventListener('popstate', e => {
+                let path = document.location.hash.substr(1);
+                document.body.setAttribute('template', 'route' + path);
+            });
+        </script>
+    </body>
+
+</html>
