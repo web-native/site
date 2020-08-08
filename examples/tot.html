@@ -1,0 +1,58 @@
+<html>
+
+    <head>
+
+        <template name="item-template">
+            <li root partials-slot="item">
+                <span scoped:id="content"></span>
+                <button scoped:id="remover">Remove</button>
+                <script type="scoped">
+                    this.idrefs.content.innerHTML = content;
+                    this.idrefs.remover.addEventListener('click', () => this.remove());
+                </script>
+            </li>
+        </template>
+
+    </head>
+
+    <body>
+
+        <div root id="todo" template="item-template">
+
+            <h2 scoped:id="title"></h2>
+
+            <ul scoped:id="items"></ul>
+
+            <button scoped:id="adder">Add</button>
+
+            <script type="scoped">
+                this.idrefs.title.innerHTML = title;
+                items.forEach(itemBinding => {
+                    let itemElement = this.template.partials.item[0].cloneNode(true);
+                    this.idrefs.items.append(itemElement.bind(itemBinding));
+                });
+                this.idrefs.adder.addEventListener('click', () => addItem());
+            </script>
+
+        </div>
+
+        <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
+        <script src="//unpkg.com/@web-native-js/observer/dist/main.js"></script>
+        <script>
+            let Obs = window.WebNative.Observer;
+            let count = 4;
+            document.querySelector('#todo').bind({
+                title: 'My TODOs',
+                items: [
+                    {content: 'TODO-1'},
+                    {content: 'TODO-2'},
+                    {content: 'TODO-3'},
+                ],
+                addItem() {
+                    Obs.proxy(this.items).push({content: 'TODO-' + count ++});
+                },
+            });
+        </script>
+    </body>
+
+</html>
