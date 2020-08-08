@@ -1,59 +1,70 @@
-<!DOCTYPE html>
 <html>
 
     <head>
 
         <title>A TODO Example</title>
-        <template name="item-template">
-            <li root partials-slot="item">
-                <span scoped:id="content"></span>
+        <template name="items">
+            
+            <li root>
+                <span scoped:id="desc"></span>
                 <button scoped:id="remover">Remove</button>
                 <script type="scoped">
-                    this.idrefs.content.innerHTML = content;
+                    this.idrefs.desc.innerHTML = desc;
                     this.idrefs.remover.addEventListener('click', () => this.remove());
                 </script>
             </li>
+
         </template>
 
     </head>
 
     <body>
 
-        <div root id="todo" template="item-template">
+        <div root id="todo">
 
             <h2 scoped:id="title"></h2>
-
-            <ul scoped:id="items"></ul>
-
+            <ol scoped:id="items" template="items"></ol>
             <button scoped:id="adder">Add</button>
+            <br />
+            <br />
+            <div>Ypu can also add items from the console. Open your console and type: <code>todoItems.push({desc:"New Item")</code></div>
 
             <script type="scoped">
                 this.idrefs.title.innerHTML = title;
-                items.forEach(itemBinding => {
-                    let itemElement = this.template.partials.item[0].cloneNode(true);
-                    this.idrefs.items.append(itemElement.bind(itemBinding));
-                });
+                $(this.idrefs.items).itemize(items, (el, data) => el.bind(data));
                 this.idrefs.adder.addEventListener('click', () => addItem());
             </script>
 
         </div>
 
-        <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
         <script src="//unpkg.com/@web-native-js/observer/dist/main.js"></script>
+        <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
+        <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
         <script>
+            // Declare our tools
             let Obs = window.WebNative.Observer;
-            let count = 4;
-            document.querySelector('#todo').bind({
-                title: 'My TODOs',
+            let $ = window.WebNative.PlayUI;
+
+            // Create the app
+            let todo = {
+                $,
+                title: 'My TODO',
                 items: [
-                    {content: 'TODO-1'},
-                    {content: 'TODO-2'},
-                    {content: 'TODO-3'},
+                    {desc: 'Task-1'},
+                    {desc: 'Task-2'},
+                    {desc: 'Task-3'},
                 ],
                 addItem() {
-                    Obs.proxy(this.items).push({content: 'TODO-' + count ++});
+                    window.todoItems.push({desc: prompt('Task description'),});
                 },
-            });
+            };
+            
+            // Bind the app to the UI
+            document.querySelector('#todo').bind(todo);
+
+            // Make the items available globally
+            // so that we can always manipulate them
+            window.todoItems = Obs.proxy(todo.items);
         </script>
     </body>
 
