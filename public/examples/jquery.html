@@ -1,0 +1,27 @@
+<htnl>
+<head>
+  <title>A jQuery Example</title>
+</head>
+<body>
+
+    <div root id="alert">
+        <div scoped:id="message"></div>
+        <script type="scoped">
+            $(this.idrefs.message).html(message).then(() => {
+                // Do something next
+            });
+        </script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
+    <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
+    <script>
+        document.bind({$: window.WebNative.PlayUI});
+        document.querySelector('#alert').bind({
+            message: 'This task is now complete!',
+        });
+    </script>
+
+</body>
+</html>
