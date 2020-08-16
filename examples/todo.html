@@ -4,12 +4,11 @@
 
         <title>A TODO Example</title>
         <template name="item-template">
-            <li root partials-slot="item">
+            <li namespace partials-slot="item">
                 <span scoped:id="content"></span>
                 <button scoped:id="remover">Remove</button>
                 <script type="scoped">
-                    this.idrefs.content.innerHTML = content;
-                    this.idrefs.remover.addEventListener('click', () => this.remove());
+                    this.namespace.content.innerHTML = content;
                 </script>
             </li>
         </template>
@@ -18,7 +17,7 @@
 
     <body>
 
-        <div root id="todo" template="item-template">
+        <div namespace id="todo" template="item-template">
 
             <h2 scoped:id="title"></h2>
 
@@ -27,12 +26,12 @@
             <button scoped:id="adder">Add</button>
 
             <script type="scoped">
-                this.idrefs.title.innerHTML = title;
+                this.namespace.title.innerHTML = title;
                 items.forEach(itemBinding => {
                     let itemElement = this.template.partials.item[0].cloneNode(true);
-                    this.idrefs.items.append(itemElement.bind(itemBinding));
+                    this.namespace.items.append(itemElement.bind(itemBinding));
                 });
-                this.idrefs.adder.addEventListener('click', () => addItem());
+                this.namespace.adder.addEventListener('click', () => addItem());
             </script>
 
         </div>
