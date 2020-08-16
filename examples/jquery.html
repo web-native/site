@@ -4,10 +4,10 @@
 </head>
 <body>
 
-    <div root id="alert">
+    <div namespace id="alert">
         <div scoped:id="message"></div>
         <script type="scoped">
-            $(this.idrefs.message).html(message).then(() => {
+            $(this.namespace.message).html(message).then(() => {
                 // Do something next
             });
         </script>
