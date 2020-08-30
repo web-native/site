@@ -1,0 +1,52 @@
+<main partials-slot="main">
+
+    <script type="scoped">
+      const addCallback = (el, data) => el.bind(data);
+      if (engr || evan) {
+          $(this.idrefs.engineeringSection).itemize(engr, addCallback);
+          $(this.idrefs.evangelismSection).itemize(engr, addCallback);
+      }
+    </script>
+
+    <section id="tools" class="section">
+      
+      <h2 style="font-size: 2em;">Tools</h2>
+      <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
+        <p>
+        Libraries, tools, and specifications that bridge major gaps on the web,
+        starting at the platform level.
+        </p>
+        <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+          <li>
+            <partials-slot template="components/link" name="cta" href="/about/#tools" class="round-tile">
+              <span scoped:id="label">Learn More</span>
+            </partials-slot>
+          </li>
+        </ul>
+      </div>
+
+      <ul is="playui-ul" template="components/sequence/card" scoped:id="engineeringSection" class="grid-4" style="list-style: none; margin-top: 30px; line-height: 1.6em; grid-auto-rows: 350px;"></ul>
+      
+    </section>
+
+    <section id="evangelism" class="section" style="border-top: 1px solid silver; background-color: whitesmoke;">
+      
+      <h2 style="font-size: 2em;">Evangelism</h2>
+      <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
+        <p>
+        #Hashtags, Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
+        </p>
+        <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+          <li>
+            <partials-slot template="components/link" name="cta" href="/about/#evangelism" class="round-tile">
+              <span scoped:id="label">Learn More</span>
+            </partials-slot>
+          </li>
+        </ul>
+      </div>
+
+      <ul is="playui-ul" template="components/sequence/card" scoped:id="evangelismSection" class="grid-4" style="list-style: none; margin-top: 30px; line-height: 1.6em; grid-auto-rows: 350px;"></ul>
+
+    </section>
+
+</main>

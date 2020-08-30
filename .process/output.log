@@ -1,0 +1,17 @@
+Request log:
+
+GET /  (text/html) 200
+GET /app.css  (text/css) 200
+GET /app.js  (text/javascript) 200
+GET /image/bg-light.jpg  (image/jpeg) 200
+GET /image/illustrations/chtml-2.fw.png  (image/png) 200
+GET /image/illustrations/chtml-3.fw.png  (image/png) 200
+GET /image/banner2.fw.png  (image/png) 200
+GET /image/banner.fw.png  (image/png) 200
+GET /image/illustrations/chtml.fw.png  (image/png) 200
+GET /image/illustrations/structure.fw.png  (image/png) 200
+GET /image/logo.fw.png  (image/png) 200
+GET /image/logo2.fw.png  (image/png) 200
+GET /assets/images/logo2.fw.png  (image/png) 200
+GET /assets/images/bg-light.jpg  (image/jpeg) 200
+GET /favicon.ico 404

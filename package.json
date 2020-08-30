@@ -6,20 +6,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "webpack --config ../webpack.config.site.js",
-    "build-html": "node ./html/chtml-bundler.js",
-    "build": "npm run build-js && npm run build-html",
-    "watch-js": "webpack --watch",
-    "watch-html": "onchange \"./html/**/*.html\" -- npm run build-chtml",
-    "watch": "npm run watch-js && npm run watch-html"
+    "build": "webpack --config ../webpack.config.site.js",
+    "watch": "webpack --watch"
   },
   "dependencies": {
-    "@web-native-js/commons": "^0.0.3",
-    "@web-native-js/reflex-components": "^0.1.0",
-    "@web-native-js/play-ui": "^0.0.1",
-    "@web-native-js/chtml": "^0.6.0"
+    "@web-native-js/commons": "file:../commons",
+    "@web-native-js/chtml": "file:../chtml",
+    "@web-native-js/dom": "file:../dom",
+    "@web-native-js/play-ui": "file:../play-ui",
+    "@web-native-js/observer": "file:../observer",
+    "@web-native-js/observables": "file:../observables",
+    "hammerjs": "^2.0.8"
   },
   "devDependencies": {
+    "@web-native-js/navigator": "file:../navigator",
+    "@web-native-js/chtml-cli": "file:../chtml-cli",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   },

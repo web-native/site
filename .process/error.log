@@ -1,0 +1,72 @@
+(node:11604) ExperimentalWarning: The ESM module loader is experimental.
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'state' of undefined
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'state' of undefined
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'sessionTotal' of undefined
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'currency' of undefined
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'monetizationStart' of undefined
+HTMLDivElement {
+  '.chtml': {
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'monetizationStop' of undefined
+HTMLBodyElement {
+  '.chtml': {
+    slots: { main: [HTMLElement] },
+    scopedJS: {
+      scope: [Scope],
+      scriptElement: HTMLScriptElement {},
+      AST: [Block],
+      errorLevel: 1
+    }
+  }
+} Cannot read property 'main' of undefined

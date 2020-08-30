@@ -1,197 +1,138 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head root>
 
-    <meta name="theme-color" content="gainsboro" />
+        <meta name="theme-color" content="gainsboro" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="chtml" content="isomorphic=true;script-errors=1" />
+        <base href="/" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162031816-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'UA-162031816-2');
-    </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162031816-2"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-162031816-2');
+        </script>
 
-    <title>Welcome to Web-Native</title>
+        <title scoped:id="title">...</title>
+
+        <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/resets.css" />
+        <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/canvas.css" />
+        
+        <script src="http://localhost:8080/play-ui/ext/web-animations.min.js"></script>
+        <script src="http://localhost:8080/play-ui/ext/hammer.min.js"></script>
+        <script src="http://localhost:8080/play-ui/dist/main.js"></script>
+        
+        <!--
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/resets.css" />
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/canvas.css" />
+        
+          <script src="//unpkg.com/@web-native-js/play-ui/ext/web-animations.min.js"></script>
+        <script src="//unpkg.com/@web-native-js/play-ui/ext/hammer.min.js"></script>
+        <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
+        -->
+        
+        <link type="text/css" rel="stylesheet" href="/app.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
     
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/" />
-    
-    <link rel="shortcut icon" href="favicon_io/favicon.ico" />
+        <template name="app" src="/app.html"></template>
+        <template name="components" src="/components.html"></template>
 
-    <!--
-    <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/resets.css" />
-    <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/canvas.css" />
-	
-	  <script src="http://localhost:8080/play-ui/ext/web-animations.min.js"></script>
-    <script src="http://localhost:8080/play-ui/ext/hammer.min.js"></script>
-    <script src="http://localhost:8080/play-ui/dist/main.js"></script>
-    -->
-    
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/resets.css" />
-    <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/canvas.css" />
-	
-	  <script src="//unpkg.com/@web-native-js/play-ui/ext/web-animations.min.js"></script>
-    <script src="//unpkg.com/@web-native-js/play-ui/ext/hammer.min.js"></script>
-    <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
+        <script src="/app.js"></script>
+        <script type="scoped">if (route) { $(this.idrefs.title).html(route.title) }</script>
+    </head>
 
-    <script src="/main.js"></script>
-    <link type="text/css" rel="stylesheet" href="/main.css" />
-    <template is="html-bundle" src="/main.html"></template>
-    <template is="html-bundle" src="/main2.html"></template>
+    <body root template style="font-family: sans-serif;">
 
-  </head>
-  
-  <body style="font-family: sans-serif;">
-    
-    <div root class="h2" style="display: block; padding: 15px; text-align: center; background-color: gainsboro; color: black; border-bottom: 5px solid yellow">
+        <div root class="h2" style="display: block; padding: 15px; text-align: center; color: black; border-bottom: 5px solid yellow; background-image:url(assets/images/bg-light.jpg);">
       
-      <span>Support the Web-Native project:</span>
+            <span>Support the Web-Native project:</span>
+            
+            <button scoped:id="monetizationStart" class="support-button" title="Send micropayment from your browser (from your Web Monetization wallet)">from your browser</button>
+            <span scoped:id="monetizationActive" class="d-none">
+              <div style="display: inline-block; padding: 5px; font-size: smaller;">
+                <span scoped:id="monetizationTotal"></span>
+                <span scoped:id="monetizationCurrency"></span>
+              </div>
+              <button scoped:id="monetizationStop" class="support-button" title="Stop sending micropayment">stop</button>
+            </span>
+            <a href="https://patreon.com/ox_harris" target="blank" class="support-button">on Patreon &longrightarrow;</a>
+            
+            <script type="scoped">
+              // Display
+              $(this.idrefs.monetizationStart).class('d-none', monetization.state === 'started');
+              $(this.idrefs.monetizationActive).class('d-none', monetization.state !== 'started');
+              // Total
+              $(this.idrefs.monetizationTotal).html(monetization.sessionTotal.value);
+              $(this.idrefs.monetizationCurrency).html(monetization.currency);
+              // Controls
+              $(this.idrefs.monetizationStart).on('click', () => monetization.start());
+              $(this.idrefs.monetizationStop).on('click', () => monetization.stop());
+            </script>
       
-      <button scoped:id="monetizationStart" class="support-button" title="Send micropayment from your browser (from your Web Monetization wallet)">from your browser</button>
-      <span scoped:id="monetizationActive" class="d-none">
-        <div style="display: inline-block; padding: 5px; font-size: smaller;">
-          <span scoped:id="monetizationTotal"></span>
-          <span scoped:id="monetizationCurrency"></span>
-        </div>
-        <button scoped:id="monetizationStop" class="support-button" title="Stop sending micropayment">stop</button>
-      </span>
-      <a href="https://patreon.com/ox_harris" target="blank" class="support-button">on Patreon &longrightarrow;</a>
-      
-      <script type="text/scoped-js">
-        // Display
-        $(this.scopeTree.monetizationStart).class('d-none', monetization.state === 'started');
-        $(this.scopeTree.monetizationActive).class('d-none', monetization.state !== 'started');
-        // Total
-        $(this.scopeTree.monetizationTotal).html(monetization.sessionTotal.value);
-        $(this.scopeTree.monetizationCurrency).html(monetization.currency);
-        // Controls
-        $(this.scopeTree.monetizationStart).on('click', () => monetization.start());
-        $(this.scopeTree.monetizationStop).on('click', () => monetization.stop());
-      </script>
-
-    </div>
-
-    <!-- ---------------------------- -->
-    <html-import namespace="html/route" id="app" class="pos-rel" style="background-color: white; color: gray; opacity: 0;">
-      
-      <script type="text/scoped-js">
-        $(this).play({opacity: 1});
-        if (current.active) {
-          $(this.scopeTree.header.scopeTree.primary).css('display', '');
-          $(this.scopeTree.header.scopeTree.secondary).css('display', 'none');
-        } else {
-          $(this.scopeTree.header.scopeTree.primary).css('display', 'none');
-          $(this.scopeTree.header.scopeTree.secondary).css('display', '');
-        }
-      </script>
-
-      <header root scoped:id="header" class="section" style="border-bottom: 1px solid silver;">
-
-        <div scoped:id="primary" class="flex-y-center" style="display: none;">
-          <a href="" class="flex-y-center">
-            <img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 2em;" />
-            <div class="h2" style="padding-left: 15px; font-size: 1.35em;">Web-Native</div>
-          </a>
         </div>
 
-        <div scoped:id="secondary">
-          <a href=""><img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
-          <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
-  
-          <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
-            (.dev)
-          </div>
-          
-          <div class="flex-y-stretch lg--d-block">
-            <div>
-              <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
-                <p>
-                  An open community for advancing native web technologies, platform features and APIs
-                  through <a class="a2" href="#tools">engineering</a> and <a class="a2" href="#evangelism">evangelism</a>
-                </p>
+        <header root scoped:id="header" class="section" style="border-bottom: 1px solid silver;">
+
+            <div scoped:id="primary" class="flex-y-center" style="display: none;">
+              <a href="" class="flex-y-center">
+                <img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 2em;" />
+                <div class="h2" style="padding-left: 15px; font-size: 1.35em;">Web-Native</div>
+              </a>
+            </div>
+    
+            <div scoped:id="secondary">
+              <a href="/"><img src="/assets/images/logo2.fw.png" alt="W" class="h2" style="max-width: 1.25em; font-size: 3.6em;" /></a>
+              <div class="h2" style="margin-top: 15px; font-size: 2em;">Web-Native</div>
+      
+              <div class="h2" style="display: inline-block; margin-top: 10px; padding-bottom: 15px; border-bottom: 3px solid lavender;">
+                (.dev)
               </div>
               
-    
-              <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
-                <li style="">
-                  <html-import namespace="html/link/arrow/round" href="/about/">
-                    <span scoped:id="label">About Web-Native</span>
-                  </html-import>
-                </li>
-              </ul>
-            </div>
-  
-            <div class="col-grows">
-            </div>
-          </div>
-
-        </div>
+              <div class="flex-y-stretch lg--d-block">
+                <div>
+                  <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
+                    <p>
+                      An open community for advancing native web technologies, platform features and APIs
+                      through <a class="a2" href="#tools">engineering</a> and <a class="a2" href="#evangelism">evangelism</a>
+                    </p>
+                  </div>
+                  
         
-      </header>
+                  <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
+                    <li>
+                      <partials-slot name="cta" template="components/link" href="/about/" class="round-tile">
+                        <span>About Web-Native</span>
+                      </partials-slot>
+                    </li>
+                  </ul>
+                </div>
+      
+                <div class="col-grows">
+                </div>
+              </div>
+    
+            </div>
+            
+        </header>
 
-      <main root scoped:id="page" class="pos-rel" style="">
-          
-        <script type="text/scoped-js">
-          if (engineeringSection || evangelismSection) {
-              this.scopeTree.engineeringSection.bind(engineeringSection);
-              this.scopeTree.evangelismSection.bind(evangelismSection);
+        <partials-slot root name="main" scoped:id="main" class="pos-rel">
+          Default content...
+        </partials-slot>
+    
+        <footer scoped:id="footer" class="section" style="border-top: 1px solid silver;">
+            &copy; 2020 Oxford Harrison
+        </footer>
+
+        <script type="scoped">
+          if (this.idrefs.main && route) {
+              this.idrefs.main.bind(route.main);
           }
         </script>
 
-        <section id="tools" class="section" style="">
-          
-          <h2 style="font-size: 2em;">Tools</h2>
-          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
-            <p>
-            Libraries, tools, and specifications that bridge major gaps on the web,
-            starting at the platform level.
-            </p>
-            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
-              <li style="">
-                <html-import namespace="html/link/arrow/round" href="/about/#tools">
-                  <span scoped:id="label">Learn More</span>
-                </html-import>
-              </li>
-            </ul>
-          </div>
-
-          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="engineeringSection" style="margin-top: 30px; line-height: 1.6em; grid-auto-rows: 350px;"></html-import>
-          
-        </section>
-
-        <section id="evangelism" class="section" style="border-top: 1px solid silver; background-color: whitesmoke;">
-          
-          <h2 style="font-size: 2em;">Evangelism</h2>
-          <div style="max-width: 500px; margin-top: 25px; line-height: 1.6em; font-size: larger;">
-            <p>
-            #Hashtags, Articles, talks, conferences, meetups, trainings and workshops on Web-Native development.
-            </p>
-            <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
-              <li style="">
-                <html-import namespace="html/link/arrow/round" href="/about/#evangelism">
-                  <span scoped:id="label">Learn More</span>
-                </html-import>
-              </li>
-            </ul>
-          </div>
-
-          <html-import namespace="html/list/sequence/cards//html/listitem/sequence/card" scoped:id="evangelismSection" style="margin-top: 30px; line-height: 1.6em; grid-auto-rows: 450px;"></html-import>
-
-        </section>
-      </main>
-
-      <footer scoped:id="footer" class="section" style="border-top: 1px solid silver;">
-        &copy; 2020 Oxford Harrison
-      </footer>
-      
-    </html-import>
-    <!-- ---------------------------- -->
-
-  </body>
+    </body>
 </html>

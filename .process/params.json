@@ -1,0 +1,1 @@
+{"port":4200,"root":"C:\\Users\\ox_ha\\Documents\\WebNative\\site","appDir":"C:\\Users\\ox_ha\\Documents\\WebNative\\site\\server","publicDir":"C:\\Users\\ox_ha\\Documents\\WebNative\\site\\public","showRequestLog":true,"forever":true,"isomorphic":true,"ssr":{"globalWindow":1},"templateRoutePath":"app/route","webpack":{"mode":"production","devtool":"inline-source-map"}}
