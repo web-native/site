@@ -22,5 +22,5 @@ routes['/'] = index2;
 export const app = new Navigator({
     routes,
     templateRoutePath: 'app/route',
-    isomorphic: true,
+    isomorphic: false,
 });
