@@ -42,10 +42,17 @@
               <div scoped:id="tags" style="margin-top: 10px; font-size: smaller; font-weight: bold;"></div>
             </div>
             <div class="col-12">
+<<<<<<< HEAD
               <div scoped:id="authors" template="components/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
               <div class="flex-x-separate">
                 <partials-slot template="components/link" name="cta" scoped:id="link1" class="basic-arrowed" style="font-weight: normal"><span></span></partials-slot>
                 <partials-slot template="components/link" name="cta" scoped:id="link2" style="padding-right: 0px; font-weight: normal;"><span></span></partials-slot>
+=======
+              <div scoped:id="authors" namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
+              <div class="flex-x-separate" partials-import="html/link/arrow">
+                <partials-slot name="cta" scoped:id="link1" class="basic-arrowed" style="font-weight: normal"></partials-slot>
+                <partials-slot name="cta" scoped:id="link2" style="padding-right: 0px; font-weight: normal;"></partials-slot>
+>>>>>>> 4569173ca156444d9a3ec9796ca09abd265b080b
               </div>
             </div>
             
@@ -59,17 +66,28 @@
 
       <template name="link">
 
+<<<<<<< HEAD
         <a namespace partials-slot="cta" template="@slot" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;">
           <partials-slot scoped:id="label" style="padding: 5px">...</partials-slot>
           <span scoped:id="arrow" class="d-none" style="padding: 5px">&longrightarrow;</span>
+=======
+        <a root partials-slot="cta" template="@slot" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;">
+          <partials-slot scoped:id="label" style="padding: 5px">...</partials-slot>
+          <span scoped:id="arrow" style="padding: 5px">&longrightarrow;</span>
+>>>>>>> 4569173ca156444d9a3ec9796ca09abd265b080b
           <script type="scoped">
             if (href) {
                 $(this).attr('href', href);
             }
             if (label) {
+<<<<<<< HEAD
               $(this.namespace.label).html(label);
               $(this.namespace.arrow).class('d-none', false);
             }
+=======
+              $(this.idrefs.label).html(label);
+          }
+>>>>>>> 4569173ca156444d9a3ec9796ca09abd265b080b
           </script>
         </a>
 
@@ -79,6 +97,7 @@
 
       <template name="author">
 
+<<<<<<< HEAD
         <div namespace class="flex-y-center">
 
           <script type="scoped">
@@ -88,6 +107,17 @@
                     title: name,
                 });
                 $(this.namespace.avatar).attr('src', avatar);
+=======
+        <div root class="flex-y-center">
+
+          <script type="scoped">
+            if (link) {
+                $(this.idrefs.link).attr({
+                    href: link,
+                    title: name,
+                });
+                $(this.idrefs.avatar).attr('src', avatar);
+>>>>>>> 4569173ca156444d9a3ec9796ca09abd265b080b
             }
           </script>
   
@@ -98,4 +128,8 @@
         </div>
 
       </template>
+<<<<<<< HEAD
       
+=======
+      
+>>>>>>> 4569173ca156444d9a3ec9796ca09abd265b080b
