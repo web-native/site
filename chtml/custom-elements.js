@@ -2,7 +2,7 @@
 /**
  * @imports
  */
-import Sequence from '@web-native-js/play-ui/src/ani/Sequence.js';
+import Sequence from '@onephrase/play-ui/src/ani/Sequence.js';
 
 /**
  * ---------------------------

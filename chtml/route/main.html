@@ -3,8 +3,8 @@
     <script type="scoped">
       const addCallback = (el, data) => el.bind(data);
       if (engr || evan) {
-          $(this.idrefs.engineeringSection).itemize(engr, addCallback);
-          $(this.idrefs.evangelismSection).itemize(engr, addCallback);
+          $(this.namespace.engineeringSection).itemize(engr, addCallback);
+          $(this.namespace.evangelismSection).itemize(engr, addCallback);
       }
     </script>
 

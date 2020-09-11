@@ -3,29 +3,29 @@
 
         <template name="card">
 
-          <li is="playui-li" root class="tile round-tile flex-y-separate flex-wrap">
+          <li is="playui-li" namespace class="tile round-tile flex-y-separate flex-wrap">
 
             <script type="scoped">
               if (meta) {
-                  $(this.idrefs.meta).class('d-none', false);
-                  $(this.idrefs.icon).attr('src', meta.icon);
-                  $(this.idrefs.type).html(meta.type);
+                  $(this.namespace.meta).class('d-none', false);
+                  $(this.namespace.icon).attr('src', meta.icon);
+                  $(this.namespace.type).html(meta.type);
               }
               if (label) {
-                  $(this.idrefs.label).html(label);
-                  $(this.idrefs.desc).html(desc);
+                  $(this.namespace.label).html(label);
+                  $(this.namespace.desc).html(desc);
               }
-              if (link1 && this.idrefs.link1) {
-                  this.idrefs.link1.bind({href:link1[0], label:link1[1]});
+              if (this.namespace.link1 && link1) {
+                  this.namespace.link1.bind({href:link1[0], label:link1[1]});
               }
               if (tags) {
-                  $(this.idrefs.tags).html(tags.join(' &middot; '));
+                  $(this.namespace.tags).html(tags.join(' &middot; '));
               }
-              if (authors) {
-                  this.idrefs.authors.bind(authors);
+              if (this.namespace.authors && authors) {
+                  $(this.namespace.authors).itemize(authors, (el, data) => el.bind(data));
               }
-              if (link2 && this.idrefs.link2) {
-                  this.idrefs.link2.bind({
+              if (this.namespace.link2 && link2) {
+                  this.namespace.link2.bind({
                     href:link2[0],
                     label:link2[1],
                   });
@@ -42,10 +42,10 @@
               <div scoped:id="tags" style="margin-top: 10px; font-size: smaller; font-weight: bold;"></div>
             </div>
             <div class="col-12">
-              <div scoped:id="authors" namespace="//html/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
-              <div class="flex-x-separate" partials-import="html/link/arrow">
-                <partials-slot name="cta" scoped:id="link1" class="basic-arrowed" style="font-weight: normal"></partials-slot>
-                <partials-slot name="cta" scoped:id="link2" style="padding-right: 0px; font-weight: normal;"></partials-slot>
+              <div scoped:id="authors" template="components/author" style="padding-top: 15px; padding-bottom: 15px;"></div>
+              <div class="flex-x-separate">
+                <partials-slot template="components/link" name="cta" scoped:id="link1" class="basic-arrowed" style="font-weight: normal"><span></span></partials-slot>
+                <partials-slot template="components/link" name="cta" scoped:id="link2" style="padding-right: 0px; font-weight: normal;"><span></span></partials-slot>
               </div>
             </div>
             
@@ -59,16 +59,17 @@
 
       <template name="link">
 
-        <a root partials-slot="cta" template="@slot" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;">
+        <a namespace partials-slot="cta" template="@slot" class="flex-y-center" style="text-decoration: none; padding: 5px; padding-left: 7.5px; padding-right: 7.5px; font-weight: bold;">
           <partials-slot scoped:id="label" style="padding: 5px">...</partials-slot>
-          <span scoped:id="arrow" style="padding: 5px">&longrightarrow;</span>
+          <span scoped:id="arrow" class="d-none" style="padding: 5px">&longrightarrow;</span>
           <script type="scoped">
             if (href) {
                 $(this).attr('href', href);
             }
             if (label) {
-              $(this.idrefs.label).html(label);
-          }
+              $(this.namespace.label).html(label);
+              $(this.namespace.arrow).class('d-none', false);
+            }
           </script>
         </a>
 
@@ -78,15 +79,15 @@
 
       <template name="author">
 
-        <div root class="flex-y-center">
+        <div namespace class="flex-y-center">
 
           <script type="scoped">
             if (link) {
-                $(this.idrefs.link).attr({
+                $(this.namespace.link).attr({
                     href: link,
                     title: name,
                 });
-                $(this.idrefs.avatar).attr('src', avatar);
+                $(this.namespace.avatar).attr('src', avatar);
             }
           </script>
   

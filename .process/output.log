@@ -1,17 +1,17 @@
 Request log:
 
-GET /  (text/html) 200
-GET /app.css  (text/css) 200
-GET /app.js  (text/javascript) 200
-GET /image/bg-light.jpg  (image/jpeg) 200
-GET /image/illustrations/chtml-2.fw.png  (image/png) 200
-GET /image/illustrations/chtml-3.fw.png  (image/png) 200
-GET /image/banner2.fw.png  (image/png) 200
-GET /image/banner.fw.png  (image/png) 200
-GET /image/illustrations/chtml.fw.png  (image/png) 200
-GET /image/illustrations/structure.fw.png  (image/png) 200
-GET /image/logo.fw.png  (image/png) 200
-GET /image/logo2.fw.png  (image/png) 200
-GET /assets/images/logo2.fw.png  (image/png) 200
-GET /assets/images/bg-light.jpg  (image/jpeg) 200
-GET /favicon.ico 404
+[Fri, 11 Sep 2020 12:11:40 GMT] GET /  (text/html) 200
+[Fri, 11 Sep 2020 12:11:40 GMT] GET /app.css  (text/css) 200
+[Fri, 11 Sep 2020 12:11:40 GMT] GET /app.js  (text/javascript) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/banner.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/banner2.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/bg-light.jpg  (image/jpeg) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/illustrations/chtml-2.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/illustrations/chtml-3.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/illustrations/chtml.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/illustrations/structure.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/logo.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /image/logo2.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /assets/images/logo2.fw.png  (image/png) 200
+[Fri, 11 Sep 2020 12:11:43 GMT] GET /favicon.ico 404
+[Fri, 11 Sep 2020 12:11:44 GMT] GET /assets/images/bg-light.jpg  (image/jpeg) 200

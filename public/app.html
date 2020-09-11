@@ -116,8 +116,8 @@
 
     <script type="scoped">
       if (engr || evan) {
-          $(this.idrefs.engineeringSection).itemize(engr, (el, data) => el.bind(data));
-          $(this.idrefs.evangelismSection).itemize(evan, (el, data) => el.bind(data));
+          $(this.namespace.engineeringSection).itemize(engr, (el, data) => el.bind(data));
+          $(this.namespace.evangelismSection).itemize(evan, (el, data) => el.bind(data));
       }
     </script>
 

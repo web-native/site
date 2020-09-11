@@ -16,20 +16,6 @@ const data = {
             link2: ['https://github.com/web-native/chtml', 'GitHub',],
         },
         {
-            label: 'PlayUI',
-            desc: 'A resilient, jQuery-inspired DOM API and an intuitive UI manipulation library.',
-            tags: ['#AsynchronousDOM', '#UIPhysics'],
-            link1: ['https://docs.web-native.dev/play-ui/', 'DOCS',],
-            link2: ['https://github.com/web-native/play-ui', 'GitHub',],
-        },
-        {
-            label: 'Observer Components',
-            desc: 'Application components and client-side APIs implemented as live, observerive objects.',
-            tags: ['#ObserverActions'],
-            link1: ['https://docs.web-native.dev/observer-components/', 'DOCS',],
-            link2: ['https://github.com/web-native/observer-components', 'GitHub',],
-        },
-        {
             label: 'Observer',
             desc: 'A general-purpose observability API for JavaScript. (JavaScript\'s new <code style="background-color:whitesmoke">Object.observe()</doce>.)',
             tags: ['#ObserverActions'],
@@ -44,10 +30,10 @@ const data = {
             link2: ['https://github.com/web-native/jsen', 'GitHub',],
         },
         {
-            label: 'Commons',
-            desc: 'A thoughtful utilities library for JavaScript; used across all Web-Native modules.',
-            link1: ['https://docs.web-native.dev/commons/', 'DOCS',],
-            link2: ['https://github.com/web-native/commons', 'GitHub',],
+            label: 'RQL',
+            desc: 'A graphical Structured Query Language.',
+            link1: ['https://docs.web-native.dev/rql/', 'DOCS',],
+            link2: ['https://github.com/web-native/rql', 'GitHub',],
         },
     ],
     

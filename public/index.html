@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head root>
+    <head namespace>
 
         <meta name="theme-color" content="gainsboro" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="chtml" content="isomorphic=true;script-errors=1" />
+        <meta name="chtml" content="isomorphic=true;script-errors=0" />
         <base href="/" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -20,21 +20,21 @@
 
         <title scoped:id="title">...</title>
 
+        <!--
         <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/resets.css" />
         <link type="text/css" rel="stylesheet" href="http://localhost:8080/play-ui/css/lib/canvas.css" />
         
         <script src="http://localhost:8080/play-ui/ext/web-animations.min.js"></script>
         <script src="http://localhost:8080/play-ui/ext/hammer.min.js"></script>
         <script src="http://localhost:8080/play-ui/dist/main.js"></script>
-        
-        <!--
-        <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/resets.css" />
-        <link type="text/css" rel="stylesheet" href="//unpkg.com/@web-native-js/play-ui/css/lib/canvas.css" />
-        
-          <script src="//unpkg.com/@web-native-js/play-ui/ext/web-animations.min.js"></script>
-        <script src="//unpkg.com/@web-native-js/play-ui/ext/hammer.min.js"></script>
-        <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
         -->
+        
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/@onephrase/play-ui/css/lib/resets.css" />
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/@onephrase/play-ui/css/lib/canvas.css" />
+        
+          <script src="//unpkg.com/@onephrase/play-ui/ext/web-animations.min.js"></script>
+        <script src="//unpkg.com/@onephrase/play-ui/ext/hammer.min.js"></script>
+        <script src="//unpkg.com/@onephrase/play-ui/dist/main.js"></script>
         
         <link type="text/css" rel="stylesheet" href="/app.css" />
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Spartan:wght@900&display=swap" rel="stylesheet">
@@ -43,12 +43,12 @@
         <template name="components" src="/components.html"></template>
 
         <script src="/app.js"></script>
-        <script type="scoped">if (route) { $(this.idrefs.title).html(route.title) }</script>
+        <script type="scoped">if (route) { $(this.namespace.title).html(route.title) }</script>
     </head>
 
-    <body root template style="font-family: sans-serif;">
+    <body namespace template style="font-family: sans-serif;">
 
-        <div root class="h2" style="display: block; padding: 15px; text-align: center; color: black; border-bottom: 5px solid yellow; background-image:url(assets/images/bg-light.jpg);">
+        <div namespace class="h2" style="display: block; padding: 15px; text-align: center; color: black; border-bottom: 5px solid yellow; background-image:url(assets/images/bg-light.jpg);">
       
             <span>Support the Web-Native project:</span>
             
@@ -64,19 +64,19 @@
             
             <script type="scoped">
               // Display
-              $(this.idrefs.monetizationStart).class('d-none', monetization.state === 'started');
-              $(this.idrefs.monetizationActive).class('d-none', monetization.state !== 'started');
+              $(this.namespace.monetizationStart).class('d-none', monetization.state === 'started');
+              $(this.namespace.monetizationActive).class('d-none', monetization.state !== 'started');
               // Total
-              $(this.idrefs.monetizationTotal).html(monetization.sessionTotal.value);
-              $(this.idrefs.monetizationCurrency).html(monetization.currency);
+              $(this.namespace.monetizationTotal).html(monetization.sessionTotal.value);
+              $(this.namespace.monetizationCurrency).html(monetization.currency);
               // Controls
-              $(this.idrefs.monetizationStart).on('click', () => monetization.start());
-              $(this.idrefs.monetizationStop).on('click', () => monetization.stop());
+              $(this.namespace.monetizationStart).on('click', () => monetization.start());
+              $(this.namespace.monetizationStop).on('click', () => monetization.stop());
             </script>
       
         </div>
 
-        <header root scoped:id="header" class="section" style="border-bottom: 1px solid silver;">
+        <header namespace scoped:id="header" class="section" style="border-bottom: 1px solid silver;">
 
             <div scoped:id="primary" class="flex-y-center" style="display: none;">
               <a href="" class="flex-y-center">
@@ -105,7 +105,7 @@
         
                   <ul class="flex-y-stretch" style="list-style: none; margin-top: 25px;">
                     <li>
-                      <partials-slot name="cta" template="components/link" href="/about/" class="round-tile">
+                      <partials-slot template="components/link" name="cta" href="/about/" class="round-tile">
                         <span>About Web-Native</span>
                       </partials-slot>
                     </li>
@@ -120,7 +120,7 @@
             
         </header>
 
-        <partials-slot root name="main" scoped:id="main" class="pos-rel">
+        <partials-slot namespace name="main" scoped:id="main" class="pos-rel">
           Default content...
         </partials-slot>
     
@@ -129,8 +129,8 @@
         </footer>
 
         <script type="scoped">
-          if (this.idrefs.main && route) {
-              this.idrefs.main.bind(route.main);
+          if (this.namespace.main && route) {
+              this.namespace.main.bind(route.main);
           }
         </script>
 

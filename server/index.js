@@ -2,8 +2,14 @@
 /**
  * @imports
  */
-import _isObject from '@web-native-js/commons/js/isObject.js';
+import Dotenv from 'dotenv';
+import _isObject from '@onephrase/util/js/isObject.js';
 import data from '../data/home.js';
+
+/**
+ * Config Dotenv
+ */
+Dotenv.config();
 
 /**
  * The "/" route handler.
@@ -40,11 +46,13 @@ var initializedState;
 async function createBinding(request, response) {
     if (!initializedState) {
         initializedState = true;
-        const {default: $, ENV } = await import('@web-native-js/play-ui');
-        ENV.window = window; $.INIT();
+        const {default: $, init } = await import('@onephrase/play-ui');
+        init({reflow: false}, window);
         return {
             location:request.url,
+            monetization:{},
             route:response,
+            console:console,
             $,
         };
     }

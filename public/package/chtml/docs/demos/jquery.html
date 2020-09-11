@@ -1,0 +1,41 @@
+<htnl>
+    <head>
+      <title>A jQuery Example</title>
+    </head>
+    <body>
+    
+        <div id="alert" namespace>
+            <div scoped:id="message"></div>
+            <script type="scoped" errors="2">
+                $(this.namespace.message).html(message).then(() => {
+                    // Do something next
+                });
+            </script>
+        </div>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//unpkg.com/@web-native-js/play-ui/dist/main.js"></script>
+        <script src="//unpkg.com/@web-native-js/chtml/dist/main.js"></script>
+        <script>
+            document.bind({$: window.WN.PlayUI});
+            document.querySelector('#alert').bind({
+                message: 'This task is now complete!',
+            });
+          
+        </script>
+        <br />
+        <br />
+        <!--<div>
+          You can also bind a new message from the console. Open your console and type:
+    <pre>
+    <code>
+    document.querySelector('#alert').bind({
+        message: 'This task is still ongoing!',
+    });
+    </code>
+    </pre>
+        </div>-->
+    
+    </body>
+    </html>
+    

@@ -2,9 +2,9 @@
 /**
  * @imports
  */
-import _isObject from '@web-native-js/commons/js/isObject.js';
-import '@web-native-js/play-ui/src/browser-entry.js';
-import { Money } from '@web-native-js/observables';
+import _isObject from '@onephrase/util/js/isObject.js';
+import '@onephrase/play-ui/src/browser-entry.js';
+import WebMonetization from '@onephrase/observable-webmonetization';
 import data from '../data/home.js';
 import '../chtml/custom-elements.js';
 
@@ -48,7 +48,7 @@ async function createBinding(request, response) {
 			location:request.url,
 			route:response,
 			$:window.WebNative.PlayUI,
-			monetization:Money.WebMonetization.init('$ilp.uphold.com/g7MhU9HPWgzy', {prompt: true}),
+			monetization:WebMonetization.init('$ilp.uphold.com/g7MhU9HPWgzy', {prompt: true}),
 			console:console,
 		};
 	}
